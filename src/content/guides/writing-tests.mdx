@@ -1,0 +1,288 @@
+# Writing Tests with Arten
+
+Learn how to create effective test cases using Arten's AI-powered test generation and advanced editor features.
+
+## Overview
+
+Arten provides multiple ways to create tests:
+
+1. **AI-Generated Tests** - Describe tests in natural language
+2. **Manual Test Writing** - Use the Monaco editor with TypeScript support
+3. **Hybrid Approach** - Combine AI generation with manual refinement
+
+## AI-Powered Test Generation
+
+### Basic Test Generation
+
+Describe your test scenario in plain English:
+
+```
+Test user login with valid credentials
+```
+
+Arten will generate a complete Playwright test:
+
+```typescript
+import { test, expect } from '@playwright/test'
+
+test('user login with valid credentials', async ({ page }) => {
+  await page.goto('/login')
+  
+  await page.fill('[data-testid="email"]', 'user@example.com')
+  await page.fill('[data-testid="password"]', 'password123')
+  
+  await page.click('[data-testid="login-button"]')
+  
+  await expect(page).toHaveURL('/dashboard')
+  await expect(page.locator('[data-testid="welcome-message"]')).toBeVisible()
+})
+```
+
+### Advanced Test Scenarios
+
+For complex scenarios, provide more detailed descriptions:
+
+```
+Test e-commerce checkout flow:
+1. Add product to cart
+2. Proceed to checkout
+3. Fill shipping information
+4. Select payment method
+5. Complete purchase
+6. Verify order confirmation
+```
+
+### Best Practices for AI Prompts
+
+- **Be specific** about the actions you want to test
+- **Include expected outcomes** and assertions
+- **Mention specific UI elements** when possible
+- **Describe edge cases** and error scenarios
+
+## Manual Test Writing
+
+### Using the Monaco Editor
+
+The built-in Monaco editor provides:
+
+- **TypeScript support** with autocomplete
+- **Syntax highlighting** for Playwright APIs
+- **Error detection** and inline suggestions
+- **Code formatting** and organization
+
+### Test Structure
+
+Follow this structure for maintainable tests:
+
+```typescript
+import { test, expect } from '@playwright/test'
+
+test.describe('Feature Name', () => {
+  test.beforeEach(async ({ page }) => {
+    // Setup code
+    await page.goto('/app')
+  })
+
+  test('should perform specific action', async ({ page }) => {
+    // Test implementation
+    await page.click('[data-testid="button"]')
+    await expect(page.locator('[data-testid="result"]')).toBeVisible()
+  })
+})
+```
+
+## Element Selection Strategies
+
+### Recommended Selectors
+
+1. **Data Test IDs** (Preferred)
+   ```typescript
+   await page.click('[data-testid="submit-button"]')
+   ```
+
+2. **Semantic Selectors**
+   ```typescript
+   await page.click('button:has-text("Submit")')
+   ```
+
+3. **CSS Selectors** (When necessary)
+   ```typescript
+   await page.click('.submit-btn')
+   ```
+
+### Avoiding Fragile Selectors
+
+❌ **Avoid these selectors:**
+```typescript
+// Too specific, will break with style changes
+await page.click('.btn.btn-primary.px-4.py-2')
+
+// Position-dependent, fragile
+await page.click('div:nth-child(3) > button:first-child')
+```
+
+✅ **Prefer these approaches:**
+```typescript
+// Semantic and stable
+await page.click('button:has-text("Submit")')
+
+// Data attributes designed for testing
+await page.click('[data-testid="submit-button"]')
+```
+
+## Test Organization
+
+### File Structure
+
+Organize tests by feature or page:
+
+```
+tests/
+├── auth/
+│   ├── login.spec.ts
+│   ├── registration.spec.ts
+│   └── password-reset.spec.ts
+├── dashboard/
+│   ├── overview.spec.ts
+│   └── settings.spec.ts
+└── e2e/
+    └── user-journey.spec.ts
+```
+
+### Test Naming
+
+Use descriptive names that explain the test purpose:
+
+```typescript
+// ❌ Poor naming
+test('test1', async ({ page }) => { ... })
+test('login', async ({ page }) => { ... })
+
+// ✅ Good naming
+test('should successfully log in with valid credentials', async ({ page }) => { ... })
+test('should display error message for invalid email format', async ({ page }) => { ... })
+```
+
+## Assertions and Expectations
+
+### Common Assertions
+
+```typescript
+// Visibility assertions
+await expect(page.locator('[data-testid="element"]')).toBeVisible()
+await expect(page.locator('[data-testid="element"]')).toBeHidden()
+
+// Text assertions
+await expect(page.locator('[data-testid="title"]')).toHaveText('Expected Title')
+await expect(page.locator('[data-testid="message"]')).toContainText('Success')
+
+// URL assertions
+await expect(page).toHaveURL('/dashboard')
+await expect(page).toHaveURL(/.*\/user\/\d+/)
+
+// Attribute assertions
+await expect(page.locator('[data-testid="input"]')).toHaveAttribute('disabled')
+await expect(page.locator('[data-testid="link"]')).toHaveAttribute('href', '/target')
+```
+
+### Wait Strategies
+
+```typescript
+// Wait for element to be visible
+await page.waitForSelector('[data-testid="loading"]', { state: 'hidden' })
+
+// Wait for network request
+await page.waitForResponse(response => 
+  response.url().includes('/api/data') && response.status() === 200
+)
+
+// Wait for function to return truthy value
+await page.waitForFunction(() => window.app.isReady)
+```
+
+## Advanced Techniques
+
+### Page Object Model
+
+Create reusable page objects:
+
+```typescript
+export class LoginPage {
+  constructor(private page: Page) {}
+
+  async login(email: string, password: string) {
+    await this.page.fill('[data-testid="email"]', email)
+    await this.page.fill('[data-testid="password"]', password)
+    await this.page.click('[data-testid="login-button"]')
+  }
+
+  async expectLoginError(message: string) {
+    await expect(this.page.locator('[data-testid="error"]')).toHaveText(message)
+  }
+}
+```
+
+### Test Data Management
+
+```typescript
+// Use test data files
+import { users } from '../fixtures/users.json'
+
+test('login with admin user', async ({ page }) => {
+  const adminUser = users.admin
+  await loginPage.login(adminUser.email, adminUser.password)
+})
+```
+
+### Parameterized Tests
+
+```typescript
+const testCases = [
+  { email: 'invalid-email', password: 'valid123', error: 'Invalid email format' },
+  { email: 'valid@email.com', password: '123', error: 'Password too short' },
+]
+
+testCases.forEach(({ email, password, error }) => {
+  test(`should show error "${error}" for email "${email}"`, async ({ page }) => {
+    await loginPage.login(email, password)
+    await loginPage.expectLoginError(error)
+  })
+})
+```
+
+## Debugging Tests
+
+### Using Arten's Debug Features
+
+1. **Video Recording** - Automatically captures test execution
+2. **Screenshots** - Taken on test failures
+3. **Console Logs** - Captured and displayed in reports
+4. **Network Monitoring** - Track API calls and responses
+
+### Debug Mode
+
+Run tests in debug mode:
+
+```bash
+arten test --debug
+```
+
+### Adding Debug Information
+
+```typescript
+test('complex user flow', async ({ page }) => {
+  console.log('Starting user registration flow')
+  
+  await page.goto('/register')
+  await page.screenshot({ path: 'debug-register-page.png' })
+  
+  // Continue with test...
+})
+```
+
+## Next Steps
+
+- Learn about [AI Test Generation](/guides/ai-test-generation) in detail
+- Explore [Browser Testing](/guides/browser-testing) capabilities
+- Set up [CI/CD Integration](/guides/cicd)
+- View [Test Examples](/examples) for inspiration 

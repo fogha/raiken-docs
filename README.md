@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Arten Documentation
 
-## Getting Started
+This is the official documentation site for [Arten](https://github.com/your-username/arten) - an AI-powered test automation tool that combines AI with Playwright for automated testing.
 
-First, run the development server:
+## 🚀 Getting Started
+
+### Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Open http://localhost:3000 in your browser
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Building for Production
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Build the documentation site
+npm run build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Start the production server
+npm start
+```
 
-## Learn More
+## 📁 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+arten-docs/
+├── src/
+│   ├── app/                 # Next.js App Router pages
+│   ├── components/          # Reusable React components
+│   ├── content/             # MDX documentation content
+│   └── lib/                 # Utility functions
+├── public/                  # Static assets
+└── docs/                    # Additional documentation files
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ✨ Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **📝 MDX Support** - Write documentation in Markdown with React components
+- **🎨 Modern Design** - Clean, responsive design with Tailwind CSS
+- **🔍 Search** - Fast client-side search functionality
+- **📱 Mobile-First** - Optimized for all device sizes
+- **⚡ Fast Performance** - Built with Next.js for optimal loading speeds
+- **🌙 Dark Mode** - Automatic dark/light theme switching
 
-## Deploy on Vercel
+## 🛠️ Built With
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Next.js 14](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [MDX](https://mdxjs.com/) - Markdown with JSX
+- [Lucide React](https://lucide.dev/) - Icons
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📖 Content Management
+
+Documentation content is organized in the `src/content/` directory:
+
+- `getting-started/` - Quick start guides and installation
+- `guides/` - Step-by-step tutorials and how-tos
+- `api/` - API reference documentation
+- `examples/` - Code examples and use cases
+- `changelog/` - Version history and updates
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test locally with `npm run dev`
+5. Submit a pull request
+
+For content contributions, simply edit the MDX files in `src/content/` and submit a PR.
+
+## 📄 License
+
+This documentation is part of the Arten project and follows the same MIT license.

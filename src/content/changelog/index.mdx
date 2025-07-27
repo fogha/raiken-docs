@@ -1,0 +1,155 @@
+# Changelog
+
+All notable changes to Arten are documented here.
+
+## [Unreleased] - 2024-12-XX
+
+### 🎯 Enhanced Error Handling & UI Resilience
+- **Improved error notifications**: Moved error toasts to top-right corner to avoid interfering with main workflow
+- **Always-accessible test builder**: Ensured right panel with test generation remains visible even during browser errors
+- **Enhanced error messaging**: Added context-aware messages explaining what functionality remains available during errors
+- **Better visual hierarchy**: Improved styling of right panel to make it more prominent and discoverable
+
+### 🚀 Advanced Test Generation & Management
+- **JSON-based test specifications**: Implemented structured approach to test definition with real-time validation
+- **Enhanced AI integration**: Improved test generation using OpenRouter API with better error handling
+- **Multi-tab test editor**: Integrated Monaco editor with syntax highlighting and TypeScript support
+- **Automatic test saving**: Tests are automatically saved to `generated-tests/` directory with timestamps
+- **Test execution improvements**: Added configurable browser settings, retries, and timeout options
+
+### ✨ Core Features
+
+#### AI-Powered Testing
+- **Natural language to Playwright tests** - Convert plain English descriptions into complete test cases
+- **OpenRouter integration** - Support for multiple AI models including Claude 3.5 Sonnet
+- **Intelligent test suggestions** - AI-powered recommendations for test improvements
+
+#### Multi-Browser Support  
+- **Chromium testing** - Full Chrome/Edge browser testing
+- **Firefox testing** - Complete Firefox browser support
+- **WebKit testing** - Safari/WebKit browser compatibility
+- **Parallel execution** - Run tests across multiple browsers simultaneously
+
+#### Advanced Test Editor
+- **Monaco editor integration** - Full-featured code editor with TypeScript support
+- **Syntax highlighting** - Complete Playwright API highlighting
+- **Auto-completion** - Intelligent code suggestions and completions
+- **Error detection** - Real-time error checking and validation
+
+#### Rich Reporting
+- **Video recording** - Automatic test execution recording
+- **Screenshot capture** - Screenshots on test failures and key steps
+- **AI-powered analysis** - Intelligent test failure analysis and suggestions
+- **Detailed test reports** - Comprehensive test execution reports
+
+#### Developer Experience
+- **CLI tool** - Global installation with `@arten/cli`
+- **Project integration** - Seamless integration with existing projects
+- **Hot reload** - Real-time test updates during development
+- **Local development** - Complete offline testing capabilities
+
+### 🛠️ Technical Improvements
+
+#### Architecture
+- **Next.js 14** - Latest React framework with App Router
+- **TypeScript** - Full type safety throughout the application
+- **Tailwind CSS** - Modern utility-first CSS framework
+- **Zustand** - Lightweight state management
+- **React Query** - Efficient data fetching and caching
+
+#### Performance
+- **Optimized bundle size** - Reduced application load times
+- **Lazy loading** - Component-level code splitting
+- **Efficient re-renders** - Optimized React component updates
+- **Fast test execution** - Improved Playwright test runner performance
+
+#### Security
+- **API key management** - Secure OpenRouter API key handling
+- **Bridge authentication** - Token-based local bridge security
+- **CORS protection** - Proper cross-origin request handling
+- **Input validation** - Comprehensive user input sanitization
+
+### 📦 Dependencies
+
+#### Production Dependencies
+```json
+{
+  "next": "14.2.3",
+  "react": "^18",
+  "playwright": "^1.50.1",
+  "axios": "^1.8.3",
+  "zustand": "^5.0.3",
+  "monaco-editor": "^0.52.2",
+  "langchain": "^0.3.19"
+}
+```
+
+#### Development Dependencies
+```json
+{
+  "@playwright/test": "^1.51.1",
+  "typescript": "^5",
+  "tailwindcss": "^3.4.1",
+  "eslint": "^8",
+  "eslint-config-next": "14.2.3"
+}
+```
+
+### 🚀 Getting Started
+
+#### CLI Installation (Recommended)
+```bash
+npm install -g @arten/cli
+cd my-project
+arten start
+```
+
+#### Standalone Installation
+```bash
+git clone https://github.com/your-username/arten.git
+cd arten
+npm install
+echo "OPENROUTER_API_KEY=your_key" > .env.local
+npm run dev
+```
+
+### 📋 Known Issues
+
+- **React 19 compatibility** - Some dependencies show peer dependency warnings
+- **WebKit limitations** - Certain advanced features may not work in WebKit
+- **Windows support** - Some CLI features may require additional setup on Windows
+
+### 🔮 Coming Soon
+
+#### Planned Features
+- **Enhanced test suite management** - Better organization and grouping
+- **Advanced debugging tools** - Step-by-step test execution debugging
+- **Performance testing** - Built-in performance and load testing capabilities
+- **Mobile testing support** - iOS and Android device testing
+- **Team collaboration** - Shared test suites and team workspaces
+- **Test analytics** - Detailed test execution analytics and insights
+
+#### Infrastructure Improvements
+- **Cloud deployment** - Hosted Arten service option
+- **Database integration** - Persistent test results and history
+- **API webhooks** - Integration with external CI/CD systems
+- **Plugin system** - Extensible architecture for custom integrations
+
+### 🤝 Contributing
+
+We welcome contributions! See our [Contributing Guide](/contributing) for details.
+
+#### How to Contribute
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### 📄 License
+
+Arten is released under the [MIT License](https://github.com/your-username/arten/blob/main/LICENSE).
+
+---
+
+*Stay updated with the latest changes by watching our [GitHub repository](https://github.com/your-username/arten) and joining our [community discussions](https://github.com/your-username/arten/discussions).* 

@@ -1,103 +1,183 @@
-import Image from "next/image";
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { ArrowRight, BookOpen, Zap, Code2, Shield, Sparkles, Github } from 'lucide-react'
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-background via-muted/20 to-background">
+        <div className="container mx-auto px-4 py-20 text-center">
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-8 flex justify-center">
+              <div className="relative">
+                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-primary/20 to-muted-foreground/20 opacity-75 blur"></div>
+                <div className="relative rounded-lg bg-card px-6 py-3 border">
+                  <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
+                    Arten
+                  </h1>
+                </div>
+              </div>
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <h2 className="mb-6 text-2xl font-light text-muted-foreground sm:text-3xl">
+              AI-Powered Test Automation Tool
+            </h2>
+
+            <p className="mb-10 text-lg text-muted-foreground sm:text-xl">
+              Modern web application testing that combines AI with Playwright for automated testing.
+              Create, manage, and execute tests with real-time status tracking and comprehensive reporting.
+            </p>
+
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Link href="/getting-started">
+                <Button size="lg" className="w-full sm:w-auto">
+                  Get Started
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href="/guides">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  <BookOpen className="mr-2 h-4 w-4" />
+                  Documentation
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-foreground sm:text-4xl">
+              Why Choose Arten?
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+              Powerful features designed to make test automation accessible, efficient, and reliable.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <FeatureCard
+              icon={<Sparkles className="h-8 w-8" />}
+              title="AI-Powered Test Generation"
+              description="Transform natural language descriptions into complete Playwright tests using advanced AI models."
+            />
+            <FeatureCard
+              icon={<Zap className="h-8 w-8" />}
+              title="Multi-Browser Support"
+              description="Test across Chromium, Firefox, and WebKit browsers with consistent results and comprehensive coverage."
+            />
+            <FeatureCard
+              icon={<Code2 className="h-8 w-8" />}
+              title="Advanced Test Editor"
+              description="Monaco editor with TypeScript support, syntax highlighting, and intelligent autocomplete."
+            />
+            <FeatureCard
+              icon={<Shield className="h-8 w-8" />}
+              title="Local Integration"
+              description="Direct file system access via CLI bridge for seamless local development workflow."
+            />
+            <FeatureCard
+              icon={<BookOpen className="h-8 w-8" />}
+              title="Rich Reporting"
+              description="Video recording, screenshots, and AI-powered analysis for comprehensive test results."
+            />
+            <FeatureCard
+              icon={<Github className="h-8 w-8" />}
+              title="Open Source"
+              description="Fully open source with active community contributions and transparent development."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Start Section */}
+      <section className="bg-muted/30 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="mb-8 text-3xl font-bold text-foreground">
+              Get Started in Minutes
+            </h2>
+
+            <Card>
+              <CardContent className="pt-6">
+                <div className="space-y-6 text-left">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                      1
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground">Install the CLI</h3>
+                      <code className="mt-2 block rounded bg-muted p-2 text-sm">
+                        npm install -g @arten/cli
+                      </code>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                      2
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground">Navigate to your project</h3>
+                      <code className="mt-2 block rounded bg-muted p-2 text-sm">
+                        cd my-nextjs-app
+                      </code>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                      3
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground">Start Arten</h3>
+                      <code className="mt-2 block rounded bg-muted p-2 text-sm">
+                        arten start
+                      </code>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <Link href="/getting-started/installation">
+                    <Button>
+                      View Complete Installation Guide
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
     </div>
-  );
+  )
+}
+
+function FeatureCard({
+  icon,
+  title,
+  description
+}: {
+  icon: React.ReactNode
+  title: string
+  description: string
+}) {
+  return (
+    <Card className="transition-shadow hover:shadow-md">
+      <CardHeader>
+        <div className="mb-4 text-primary">
+          {icon}
+        </div>
+        <CardTitle className="text-xl">{title}</CardTitle>
+        <CardDescription>{description}</CardDescription>
+      </CardHeader>
+    </Card>
+  )
 }
