@@ -1,5 +1,10 @@
+'use client'
+
 import Link from 'next/link'
-import { Github, Twitter, ExternalLink } from 'lucide-react'
+import { Github, Twitter, ExternalLink, Sparkles, Heart, ArrowUp } from 'lucide-react'
+import { motion, useInView } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import { Button } from '@/components/ui/button'
 
 const navigation = {
   documentation: [
@@ -23,126 +28,309 @@ const navigation = {
 }
 
 export function Footer() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500)
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  }
+
   return (
-    <footer className="border-t bg-background">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid gap-8 lg:grid-cols-5">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="relative">
-                <div className="absolute -inset-1 rounded bg-gradient-to-r from-primary/20 to-muted-foreground/20 opacity-75 blur"></div>
-                <div className="relative rounded bg-card px-3 py-1 text-sm font-bold text-foreground border">
-                  Arten
+    <footer className="relative border-t bg-gradient-to-b from-background to-muted/20 overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-32 -right-32 w-64 h-64 rounded-full bg-gradient-to-br from-primary/10 to-transparent blur-3xl" />
+        <div className="absolute -bottom-32 -left-32 w-64 h-64 rounded-full bg-gradient-to-tr from-blue-500/10 to-transparent blur-3xl" />
+      </div>
+
+      <motion.div
+        ref={ref}
+        className="container mx-auto px-4 py-16 relative z-10"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        <div className="grid gap-12 lg:grid-cols-5">
+          {/* Enhanced Brand Section */}
+          <motion.div className="lg:col-span-2" variants={itemVariants}>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+              className="group"
+            >
+              <Link href="/" className="flex items-center space-x-3">
+                <div className="relative">
+                  <motion.div 
+                    className="absolute -inset-1 rounded-lg bg-gradient-to-r from-primary/30 via-blue-500/30 to-purple-500/30 opacity-75 blur-sm group-hover:opacity-100 transition-opacity"
+                    animate={{
+                      background: [
+                        "linear-gradient(to right, rgb(var(--primary)/0.3), rgb(59 130 246/0.3), rgb(168 85 247/0.3))",
+                        "linear-gradient(to right, rgb(168 85 247/0.3), rgb(var(--primary)/0.3), rgb(59 130 246/0.3))",
+                        "linear-gradient(to right, rgb(59 130 246/0.3), rgb(168 85 247/0.3), rgb(var(--primary)/0.3))"
+                      ]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  />
+                  <div className="relative rounded-lg bg-card/80 backdrop-blur-sm px-4 py-2 border border-border/50 group-hover:border-primary/50 transition-colors">
+                    <div className="flex items-center space-x-2">
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                      >
+                        <Sparkles className="h-5 w-5 text-primary" />
+                      </motion.div>
+                      <span className="text-lg font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+                        Arten
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <span className="text-sm font-medium text-muted-foreground">
-                Documentation
-              </span>
-            </Link>
-            <p className="mt-4 max-w-md text-sm text-muted-foreground">
-              AI-powered test automation tool that combines artificial intelligence with Playwright 
-              for modern web application testing.
-            </p>
-            <div className="mt-6 flex space-x-4">
-              <Link
-                href="https://github.com/fogha/arten"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
+                <span className="text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                  Documentation
+                </span>
               </Link>
-              <Link
-                href="https://github.com/fogha/arten/discussions"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Discussions</span>
-              </Link>
-            </div>
-          </div>
+            </motion.div>
+            
+            <motion.p 
+              className="mt-6 max-w-md text-base text-muted-foreground leading-relaxed"
+              variants={itemVariants}
+            >
+              AI-powered test automation tool that combines{' '}
+              <span className="text-primary font-medium">artificial intelligence</span> with{' '}
+              <span className="text-blue-500 font-medium">Playwright</span> for modern web application testing.
+            </motion.p>
+            
+            <motion.div 
+              className="mt-8 flex space-x-4"
+              variants={itemVariants}
+            >
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href="https://github.com/fogha/arten"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-muted/50 hover:bg-primary/20 text-muted-foreground hover:text-primary transition-all border border-border/50 hover:border-primary/50"
+                >
+                  <Github className="h-5 w-5" />
+                  <span className="sr-only">GitHub</span>
+                </Link>
+              </motion.div>
+              
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href="https://github.com/fogha/arten/discussions"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-muted/50 hover:bg-blue-500/20 text-muted-foreground hover:text-blue-500 transition-all border border-border/50 hover:border-blue-500/50"
+                >
+                  <Twitter className="h-5 w-5" />
+                  <span className="sr-only">Discussions</span>
+                </Link>
+              </motion.div>
+            </motion.div>
+          </motion.div>
 
-          {/* Documentation */}
-          <div>
-            <h3 className="text-sm font-semibold">Documentation</h3>
-            <ul className="mt-4 space-y-2">
-              {navigation.documentation.map((item) => (
-                <li key={item.name}>
+          {/* Enhanced Navigation Sections */}
+          <motion.div variants={itemVariants}>
+            <h3 className="text-sm font-semibold text-foreground mb-6 flex items-center">
+              <div className="w-2 h-2 rounded-full bg-primary mr-2" />
+              Documentation
+            </h3>
+            <ul className="space-y-3">
+              {navigation.documentation.map((item, index) => (
+                <motion.li 
+                  key={item.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                >
                   <Link
                     href={item.href}
-                    className="text-sm text-muted-foreground hover:text-foreground"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center group"
                   >
+                    <motion.span
+                      className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                      initial={false}
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                    >
+                      →
+                    </motion.span>
                     {item.name}
                   </Link>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          {/* Guides */}
-          <div>
-            <h3 className="text-sm font-semibold">Guides</h3>
-            <ul className="mt-4 space-y-2">
-              {navigation.guides.map((item) => (
-                <li key={item.name}>
+          <motion.div variants={itemVariants}>
+            <h3 className="text-sm font-semibold text-foreground mb-6 flex items-center">
+              <div className="w-2 h-2 rounded-full bg-blue-500 mr-2" />
+              Guides
+            </h3>
+            <ul className="space-y-3">
+              {navigation.guides.map((item, index) => (
+                <motion.li 
+                  key={item.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 + 0.1 }}
+                >
                   <Link
                     href={item.href}
-                    className="text-sm text-muted-foreground hover:text-foreground"
+                    className="text-sm text-muted-foreground hover:text-blue-500 transition-colors flex items-center group"
                   >
+                    <motion.span
+                      className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                      initial={false}
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                    >
+                      →
+                    </motion.span>
                     {item.name}
                   </Link>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          {/* Resources */}
-          <div>
-            <h3 className="text-sm font-semibold">Resources</h3>
-            <ul className="mt-4 space-y-2">
-              {navigation.resources.map((item) => (
-                <li key={item.name}>
+          <motion.div variants={itemVariants}>
+            <h3 className="text-sm font-semibold text-foreground mb-6 flex items-center">
+              <div className="w-2 h-2 rounded-full bg-purple-500 mr-2" />
+              Resources
+            </h3>
+            <ul className="space-y-3">
+              {navigation.resources.map((item, index) => (
+                <motion.li 
+                  key={item.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 + 0.2 }}
+                >
                   <Link
                     href={item.href}
-                    className="text-sm text-muted-foreground hover:text-foreground"
+                    className="text-sm text-muted-foreground hover:text-purple-500 transition-colors flex items-center group"
                   >
+                    <motion.span
+                      className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                      initial={false}
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                    >
+                      →
+                    </motion.span>
                     {item.name}
                   </Link>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="mt-8 border-t pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Arten. All rights reserved.
-            </p>
-            <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-              <Link href="/privacy" className="hover:text-foreground">
+        {/* Enhanced Bottom Section */}
+        <motion.div 
+          className="mt-16 border-t border-border/50 pt-8"
+          variants={itemVariants}
+        >
+          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+            <motion.p 
+              className="text-sm text-muted-foreground flex items-center"
+              whileHover={{ scale: 1.02 }}
+            >
+              © {new Date().getFullYear()} Arten. Made with{' '}
+              <motion.span
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
+                className="mx-1"
+              >
+                <Heart className="h-4 w-4 text-red-500 fill-current" />
+              </motion.span>
+              for developers.
+            </motion.p>
+            
+            <div className="flex items-center space-x-6 text-sm text-muted-foreground">
+              <Link href="/privacy" className="hover:text-primary transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-foreground">
+              <Link href="/terms" className="hover:text-primary transition-colors">
                 Terms of Service
               </Link>
-              <Link
-                href="https://github.com/fogha/arten"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center hover:text-foreground"
-              >
-                View on GitHub
-                <ExternalLink className="ml-1 h-3 w-3" />
-              </Link>
+              <motion.div whileHover={{ scale: 1.05 }}>
+                <Link
+                  href="https://github.com/fogha/arten"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center hover:text-primary transition-colors group"
+                >
+                  View on GitHub
+                  <motion.div
+                    animate={{ x: [0, 2, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <ExternalLink className="ml-1 h-3 w-3 group-hover:text-primary" />
+                  </motion.div>
+                </Link>
+              </motion.div>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll to Top Button */}
+      <motion.div
+        className="fixed bottom-8 right-8 z-50"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ 
+          opacity: showScrollTop ? 1 : 0, 
+          scale: showScrollTop ? 1 : 0 
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <Button
+            onClick={scrollToTop}
+            size="sm"
+            className="rounded-full w-12 h-12 shadow-lg bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-600 border-0"
+          >
+            <ArrowUp className="h-4 w-4" />
+            <span className="sr-only">Scroll to top</span>
+          </Button>
+        </motion.div>
+      </motion.div>
     </footer>
   )
 } 
