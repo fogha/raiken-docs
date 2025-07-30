@@ -10,7 +10,6 @@ import {
   Github,
   ExternalLink,
   Sparkles,
-  ChevronDown
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 

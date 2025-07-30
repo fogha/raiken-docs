@@ -6,7 +6,6 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { 
   Search, 
-  Filter, 
   Code, 
   Copy, 
   ExternalLink, 
@@ -14,7 +13,6 @@ import {
   BookOpen, 
   Zap, 
   Globe, 
-  ShoppingCart, 
   FileText,
   Check,
   ChevronRight,

@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Terminal, Download, CheckCircle, ExternalLink, Copy, AlertCircle, Zap, Settings, Play } from 'lucide-react'
+import { Terminal, Download, CheckCircle, Copy, AlertCircle, Zap, Settings, Play } from 'lucide-react'
 
 export default function CLISetupGuide() {
   return (

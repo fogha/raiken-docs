@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Puzzle, Code2, Zap, CheckCircle, AlertTriangle, ExternalLink, ArrowRight, Settings, FileCode } from 'lucide-react'
+import { Puzzle, Code2, Zap, CheckCircle, ArrowRight, Settings, FileCode } from 'lucide-react'
 
 export default function FrameworkIntegrationGuide() {
   return (

@@ -3,9 +3,9 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { ArrowRight, BookOpen, Zap, Code2, Shield, Sparkles, Github, Terminal, Cpu, Globe, ChevronRight, Play, GitBranch } from 'lucide-react'
+import { ArrowRight, BookOpen, Zap, Code2, Shield, Sparkles, Terminal, Cpu, Globe, ChevronRight, Play, GitBranch } from 'lucide-react'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef } from 'react'
 
 export default function HomePage() {
   const targetRef = useRef<HTMLDivElement>(null)
@@ -15,7 +15,6 @@ export default function HomePage() {
   })
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
 
   return (
     <div className="min-h-screen overflow-hidden">
@@ -348,6 +347,7 @@ export default function HomePage() {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function StatsCard({ icon: Icon, value, label }: { icon: any, value: string, label: string }) {
   return (
     <motion.div

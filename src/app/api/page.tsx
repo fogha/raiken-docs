@@ -4,9 +4,15 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
-  Code, Terminal, Settings, Database, Zap, Globe, 
-  FileText, ArrowRight, Copy, CheckCircle 
+import {
+  Code, 
+  Terminal, 
+  Settings, 
+  Zap, 
+  Globe,
+  FileText, 
+  Copy,
+  CheckCircle
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
@@ -180,7 +186,7 @@ export default function APIReferencePage() {
               <p className="text-sm text-muted-foreground">DOM extraction & navigation</p>
             </CardContent>
           </Card>
-          
+
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardContent className="p-6 text-center">
               <Zap className="h-8 w-8 text-yellow-500 mx-auto mb-3" />
@@ -188,7 +194,7 @@ export default function APIReferencePage() {
               <p className="text-sm text-muted-foreground">Generation & execution</p>
             </CardContent>
           </Card>
-          
+
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardContent className="p-6 text-center">
               <Terminal className="h-8 w-8 text-purple-500 mx-auto mb-3" />
@@ -196,7 +202,7 @@ export default function APIReferencePage() {
               <p className="text-sm text-muted-foreground">Command line interface</p>
             </CardContent>
           </Card>
-          
+
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardContent className="p-6 text-center">
               <Settings className="h-8 w-8 text-green-500 mx-auto mb-3" />
@@ -365,7 +371,7 @@ export default function APIReferencePage() {
                           </div>
                         </div>
                       )}
-                      
+
                       <div>
                         <h4 className="font-semibold mb-2">Example</h4>
                         <div className="bg-slate-900 rounded-lg p-3">
@@ -425,7 +431,7 @@ export default function APIReferencePage() {
                 <CardContent>
                   <div className="bg-slate-900 rounded-lg p-4">
                     <pre className="text-sm text-green-400">
-{`// arten.config.js
+                      {`// arten.config.js
 module.exports = {
   port: 3456,
   autoOpen: true,
@@ -455,7 +461,7 @@ module.exports = {
           className="mt-16"
         >
           <h2 className="text-3xl font-bold mb-8 text-center">TypeScript SDK</h2>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>@arten/sdk</CardTitle>
@@ -470,12 +476,12 @@ module.exports = {
                   <code className="text-green-400">npm install @arten/sdk</code>
                 </div>
               </div>
-              
+
               <div>
                 <h4 className="font-semibold mb-2">Basic Usage</h4>
                 <div className="bg-slate-900 rounded-lg p-4">
                   <pre className="text-sm text-green-400">
-{`import { ArtenClient } from '@arten/sdk';
+                    {`import { ArtenClient } from '@arten/sdk';
 
 const client = new ArtenClient({
   apiKey: process.env.OPENROUTER_API_KEY,
