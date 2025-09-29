@@ -28,7 +28,7 @@ This will:
 - Start the web interface at \`http://localhost:3460\`
 
 ### Step 2: Set Up AI (Optional)
-For AI-powered test generation, add your OpenRouter API key to `.env.local`:
+For AI-powered test generation, add your OpenRouter API key to \`.env.local\`:
 
 \`\`\`bash
 OPENROUTER_API_KEY=your_api_key_here
