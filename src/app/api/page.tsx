@@ -77,49 +77,44 @@ export default function APIReferencePage() {
       endpoint: '/api/test/generate',
       description: 'Generate test using AI',
       payload: {
-        description: 'Test user login functionality',
-        url: 'https://example.com/login',
+        description: 'Test file upload with validation',
+        url: 'https://example.com/upload',
         model: 'anthropic/claude-3.5-sonnet'
-      }
-    },
-    {
-      method: 'POST',
-      endpoint: '/api/test/execute',
-      description: 'Execute a test suite',
-      payload: {
-        testPath: './tests/login.spec.ts',
-        config: {
-          browserType: 'chromium',
-          headless: false,
-          timeout: 30000
-        }
       }
     }
   ]
 
   const cliCommands = [
     {
-      command: 'arten start',
-      description: 'Start the Arten web interface and bridge server',
+      command: 'raiken start',
+      description: 'Start the Raiken web interface and bridge server',
       options: [
         { flag: '-p, --port <port>', description: 'Port to run the server on (default: 3456)' },
         { flag: '--no-open', description: 'Don\'t open browser automatically' }
       ],
-      example: 'arten start --port 4000 --no-open'
+      example: 'raiken start --port 4000 --no-open'
     },
     {
-      command: 'arten init',
-      description: 'Initialize Arten in the current project',
+      command: 'raiken init',
+      description: 'Initialize Raiken in the current project',
       options: [
         { flag: '--force', description: 'Overwrite existing configuration' }
       ],
-      example: 'arten init --force'
+      example: 'raiken init --force'
     },
     {
-      command: 'arten info',
+      command: 'raiken info',
       description: 'Display information about the current project',
       options: [],
-      example: 'arten info'
+      example: 'raiken info'
+    },
+    {
+      command: 'raiken remote',
+      description: 'Start bridge server for remote access',
+      options: [
+        { flag: '--port <port>', description: 'Port for bridge server (default: 3001)' }
+      ],
+      example: 'raiken remote --port 3001'
     }
   ]
 
@@ -131,21 +126,33 @@ export default function APIReferencePage() {
       description: 'API key for OpenRouter AI service'
     },
     {
-      name: 'ARTEN_PORT',
-      type: 'number',
+      name: 'OPENROUTER_MODEL',
+      type: 'string',
       required: false,
-      default: '3456',
-      description: 'Port for the Arten web interface'
+      default: 'anthropic/claude-3.5-sonnet',
+      description: 'AI model to use for test generation'
     },
     {
-      name: 'ARTEN_AUTO_OPEN',
+      name: 'OPENROUTER_REFERRER',
+      type: 'string',
+      required: false,
+      description: 'Referrer URL for OpenRouter API calls'
+    },
+    {
+      name: 'OPENROUTER_TITLE',
+      type: 'string',
+      required: false,
+      description: 'Title for OpenRouter API calls'
+    },
+    {
+      name: 'RAIKEN_AUTO_OPEN',
       type: 'boolean',
       required: false,
       default: 'true',
       description: 'Automatically open browser on start'
     },
     {
-      name: 'ARTEN_TEST_DIR',
+      name: 'RAIKEN_TEST_DIR',
       type: 'string',
       required: false,
       default: 'tests',
@@ -167,7 +174,7 @@ export default function APIReferencePage() {
             API Reference
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Complete reference for Arten's REST API endpoints, CLI commands, and configuration options.
+            Complete reference for Raiken's REST API endpoints, CLI commands, and configuration options.
             Build custom integrations and automate your testing workflow.
           </p>
         </motion.div>
@@ -283,9 +290,9 @@ export default function APIReferencePage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl font-bold mb-6">Test Generation & Execution API</h2>
+              <h2 className="text-3xl font-bold mb-6">Test Generation API</h2>
               <p className="text-muted-foreground mb-8">
-                Generate tests using AI and execute test suites with custom configurations.
+                Generate tests using AI with custom configurations and models.
               </p>
 
               <div className="space-y-6">
@@ -394,7 +401,7 @@ export default function APIReferencePage() {
             >
               <h2 className="text-3xl font-bold mb-6">Configuration</h2>
               <p className="text-muted-foreground mb-8">
-                Environment variables and configuration options for customizing Arten behavior.
+                Environment variables and configuration options for customizing Raiken behavior.
               </p>
 
               <div className="space-y-4">
@@ -425,13 +432,13 @@ export default function APIReferencePage() {
                 <CardHeader>
                   <CardTitle>Configuration File</CardTitle>
                   <CardDescription>
-                    You can also configure Arten using a <code>arten.config.js</code> file in your project root.
+                    You can also configure Raiken using a <code>raiken.config.js</code> file in your project root.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="bg-slate-900 rounded-lg p-4">
                     <pre className="text-sm text-green-400">
-                      {`// arten.config.js
+                      {`// raiken.config.js
 module.exports = {
   port: 3456,
   autoOpen: true,
@@ -460,42 +467,48 @@ module.exports = {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-16"
         >
-          <h2 className="text-3xl font-bold mb-8 text-center">TypeScript SDK</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center">Bridge API</h2>
 
           <Card>
             <CardHeader>
-              <CardTitle>@arten/sdk</CardTitle>
+              <CardTitle>Local HTTP API</CardTitle>
               <CardDescription>
-                TypeScript SDK for programmatic access to Arten's functionality
+                Access Raiken's functionality programmatically via HTTP API
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-semibold mb-2">Installation</h4>
+                <h4 className="font-semibold mb-2">API Endpoint</h4>
                 <div className="bg-slate-900 rounded-lg p-3">
-                  <code className="text-green-400">npm install @arten/sdk</code>
+                  <code className="text-green-400">http://localhost:3001/api</code>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">Basic Usage</h4>
+                <h4 className="font-semibold mb-2">Example Usage</h4>
                 <div className="bg-slate-900 rounded-lg p-4">
                   <pre className="text-sm text-green-400">
-                    {`import { ArtenClient } from '@arten/sdk';
-
-const client = new ArtenClient({
-  apiKey: process.env.OPENROUTER_API_KEY,
-  baseUrl: 'http://localhost:3456'
+                    {`// Generate a test via HTTP API
+const response = await fetch('http://localhost:3001/api/generate', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    description: 'Test form submission with validation',
+    url: 'https://app.example.com/contact'
+  })
 });
 
-// Generate a test
-const test = await client.generateTest({
-  description: 'Test user login',
-  url: 'https://app.example.com/login'
-});
+const test = await response.json();
 
-// Execute test
-const result = await client.executeTest(test.path);`}
+// Save test to project
+await fetch('http://localhost:3001/api/save', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    content: test.code,
+    filename: 'contact-form.spec.ts'
+  })
+});`}
                   </pre>
                 </div>
               </div>

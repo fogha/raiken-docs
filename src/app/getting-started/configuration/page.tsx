@@ -4,59 +4,40 @@ import { mdxComponents } from '@/components/docs/mdx-components'
 const content = `
 # Configuration
 
-Customize Arten to fit your project's specific testing needs and workflow requirements.
+Customize Raiken to fit your project's specific testing needs and workflow requirements.
 
 ## Configuration File
 
-Arten uses a configuration file to customize behavior. Generate one with:
+Raiken uses a configuration file to customize behavior. Generate one with:
 
 \`\`\`bash
-arten init
+raiken init
 \`\`\`
 
-This creates \`arten.config.js\` in your project root:
+This creates \`raiken.config.json\` in your project root:
 
-\`\`\`javascript
-module.exports = {
-  // Test directory configuration
-  testDir: './tests',
-  
-  // Playwright configuration
-  playwright: {
-    use: {
-      baseURL: 'http://localhost:3000',
-      headless: false,
-      viewport: { width: 1280, height: 720 },
-      screenshot: 'only-on-failure',
-      video: 'retain-on-failure',
-    },
-    projects: [
-      { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-      { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
-      { name: 'webkit', use: { ...devices['Desktop Safari'] } },
-    ],
+\`\`\`json
+{
+  "projectType": "nextjs",
+  "testDirectory": "e2e",
+  "playwrightConfig": "playwright.config.ts",
+  "outputFormats": ["typescript"],
+  "ai": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-3.5-sonnet"
   },
-  
-  // AI configuration
-  ai: {
-    model: 'anthropic/claude-3.5-sonnet',
-    temperature: 0.1,
-    maxTokens: 4000,
+  "features": {
+    "video": true,
+    "screenshots": true,
+    "tracing": false,
+    "network": true
   },
-  
-  // Bridge configuration for local integration
-  bridge: {
-    port: 3001,
-    enabled: true,
-    autoStart: true,
-  },
-  
-  // Development server configuration
-  devServer: {
-    command: 'npm run dev',
-    port: 3000,
-    timeout: 30000,
-  },
+  "browser": {
+    "defaultBrowser": "chromium",
+    "headless": true,
+    "timeout": 30000,
+    "retries": 1
+  }
 }
 \`\`\`
 
@@ -67,17 +48,13 @@ Configure sensitive information using environment variables:
 ### Local Development (\`.env.local\`)
 
 \`\`\`bash
-# OpenRouter API key for AI features
-OPENROUTER_API_KEY=your_api_key_here
+# Required for AI features
+OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxx
 
-# Optional: Custom AI model
-ARTEN_AI_MODEL=anthropic/claude-3.5-sonnet
-
-# Optional: Custom bridge port
-ARTEN_BRIDGE_PORT=3001
-
-# Optional: Development server URL
-ARTEN_BASE_URL=http://localhost:3000
+# Optional customization
+OPENROUTER_MODEL=anthropic/claude-3.5-sonnet
+OPENROUTER_REFERRER=https://your-app.com
+OPENROUTER_TITLE=Your App Name
 \`\`\`
 
 ### Global Configuration
@@ -85,17 +62,11 @@ ARTEN_BASE_URL=http://localhost:3000
 For CLI installations, set global configuration:
 
 \`\`\`bash
-# Set API key globally
-arten config set apiKey your_api_key_here
+# Set API key globally using environment variable
+export OPENROUTER_API_KEY=your_api_key_here
 
-# Set default model
-arten config set aiModel anthropic/claude-3.5-sonnet
-
-# Set default test directory
-arten config set testDir ./e2e
-
-# View all configuration
-arten config list
+# Configuration is managed through raiken.config.js file
+# Edit the file directly to set model, test directory, etc.
 \`\`\`
 
 ## Test Directory Structure
@@ -126,7 +97,7 @@ tests/
 Configure the test directory:
 
 \`\`\`javascript
-// arten.config.js
+// raiken.config.js
 module.exports = {
   testDir: './tests',
   
@@ -140,12 +111,12 @@ module.exports = {
 
 ## Playwright Configuration
 
-Customize Playwright behavior through Arten's configuration:
+Customize Playwright behavior through Raiken's configuration:
 
 ### Browser Configuration
 
 \`\`\`javascript
-// arten.config.js
+// raiken.config.js
 module.exports = {
   playwright: {
     use: {
@@ -200,7 +171,7 @@ module.exports = {
 Set up global fixtures and page objects:
 
 \`\`\`javascript
-// arten.config.js
+// raiken.config.js
 module.exports = {
   playwright: {
     // Global setup
@@ -222,36 +193,39 @@ module.exports = {
 
 ## AI Configuration
 
-Customize AI-powered test generation:
+Customize AI-powered test generation. Raiken supports a wide range of AI models through OpenRouter:
 
-### Model Selection
+### Supported AI Models
 
-\`\`\`javascript
-// arten.config.js
-module.exports = {
-  ai: {
-    // Primary model for test generation
-    model: 'anthropic/claude-3.5-sonnet',
-    
-    // Alternative models for different tasks
-    models: {
-      generation: 'anthropic/claude-3.5-sonnet',
-      analysis: 'openai/gpt-4o',
-      refactoring: 'anthropic/claude-3-haiku',
-    },
-    
-    // Model parameters
-    temperature: 0.1,      // Lower = more deterministic
-    maxTokens: 4000,       // Maximum response length
-    topP: 1,               // Nucleus sampling
-  },
+Raiken supports a comprehensive range of AI models:
+
+- **Anthropic Claude**: 3.5 Sonnet, 3.5 Haiku, 3 Opus
+- **OpenAI GPT**: GPT-4o, GPT-4 Turbo, GPT-3.5 Turbo
+- **Google Gemini**: Pro 1.5, Flash 1.5
+- **Meta Llama**: 3.1 (405B, 70B, 8B variants)
+- **Mistral**: Large, Medium, Small, Mixtral variants
+- **And many more**: Cohere, Perplexity, Qwen, DBRX
+
+### Model Configuration
+
+\`\`\`json
+{
+  "ai": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-3.5-sonnet"
+  }
 }
+\`\`\`
+
+Set via environment variables:
+\`\`\`bash
+OPENROUTER_MODEL=anthropic/claude-3.5-sonnet
 \`\`\`
 
 ### Prompt Customization
 
 \`\`\`javascript
-// arten.config.js
+// raiken.config.js
 module.exports = {
   ai: {
     prompts: {
@@ -282,7 +256,7 @@ module.exports = {
 ### Next.js Projects
 
 \`\`\`javascript
-// arten.config.js
+// raiken.config.js
 module.exports = {
   framework: 'nextjs',
   
@@ -305,7 +279,7 @@ module.exports = {
 ### React/Vite Projects
 
 \`\`\`javascript
-// arten.config.js
+// raiken.config.js
 module.exports = {
   framework: 'react',
   
@@ -325,7 +299,7 @@ module.exports = {
 ### Vue.js Projects
 
 \`\`\`javascript
-// arten.config.js
+// raiken.config.js
 module.exports = {
   framework: 'vue',
   
@@ -347,7 +321,7 @@ module.exports = {
 The bridge enables local file system integration:
 
 \`\`\`javascript
-// arten.config.js
+// raiken.config.js
 module.exports = {
   bridge: {
     // Enable bridge server
@@ -356,11 +330,11 @@ module.exports = {
     // Bridge server port
     port: 3001,
     
-    // Auto-start bridge with Arten
+    // Auto-start bridge with Raiken
     autoStart: true,
     
     // Authentication token (optional)
-    token: process.env.ARTEN_BRIDGE_TOKEN,
+    token: process.env.RAIKEN_BRIDGE_TOKEN,
     
     // File watching
     watch: {
@@ -384,20 +358,8 @@ module.exports = {
 Configure CLI behavior globally:
 
 \`\`\`bash
-# Set default configuration directory
-arten config set configDir ~/.arten
-
-# Set default project type
-arten config set defaultFramework nextjs
-
-# Set debug mode
-arten config set debug true
-
-# Set log level
-arten config set logLevel info
-
-# Reset all configuration
-arten config reset
+# Configuration is managed through raiken.config.js file in your project
+# Edit the configuration file directly to customize settings
 \`\`\`
 
 ## Environment-Specific Configuration
@@ -405,9 +367,9 @@ arten config reset
 ### Development
 
 \`\`\`javascript
-// arten.config.dev.js
+// raiken.config.dev.js
 module.exports = {
-  ...require('./arten.config.js'),
+  ...require('./raiken.config.js'),
   
   playwright: {
     use: {
@@ -426,9 +388,9 @@ module.exports = {
 ### Production/CI
 
 \`\`\`javascript
-// arten.config.prod.js
+// raiken.config.prod.js
 module.exports = {
-  ...require('./arten.config.js'),
+  ...require('./raiken.config.js'),
   
   playwright: {
     use: {
@@ -450,10 +412,10 @@ Use environment-specific configs:
 
 \`\`\`bash
 # Development
-arten start --config arten.config.dev.js
+raiken start --config raiken.config.dev.js
 
-# Production
-arten test --config arten.config.prod.js
+# Production - use Playwright directly with custom config
+npx playwright test --config=raiken.config.prod.js
 \`\`\`
 
 ## Validation
@@ -461,14 +423,11 @@ arten test --config arten.config.prod.js
 Validate your configuration:
 
 \`\`\`bash
-# Check configuration
-arten config validate
+# Check project information
+raiken info
 
-# Show resolved configuration
-arten config show
-
-# Test configuration
-arten doctor
+# Start bridge server for remote access
+raiken remote
 \`\`\`
 
 ## Next Steps

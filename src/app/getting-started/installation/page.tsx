@@ -4,11 +4,11 @@ import { mdxComponents } from '@/components/docs/mdx-components'
 const content = `
 # Installation
 
-Get Arten up and running in your project with these installation options.
+Get Raiken up and running in your project with these installation options. Raiken provides multiple deployment methods to fit your development workflow.
 
 ## Prerequisites
 
-Before installing Arten, ensure you have:
+Before installing Raiken, ensure you have:
 
 - **Node.js 16.x or later** - [Download Node.js](https://nodejs.org/)
 - **npm** or **yarn** package manager
@@ -17,69 +17,71 @@ Before installing Arten, ensure you have:
 
 ## Installation Methods
 
-### Option 1: Clone Repository (Current Method)
+### Option 1: CLI Installation (Recommended)
 
-Currently, Arten is available as a source repository that you can clone and run:
+Install the Raiken CLI globally:
 
 \`\`\`bash
-# Clone the repository
-git clone https://github.com/fogha/arten.git
-cd arten
+# Install globally
+npm install -g @raiken/cli
 
-# Install dependencies
-npm install
+# Navigate to your project
+cd your-project
 
-# Start development server
-npm run dev
+# Initialize Raiken
+raiken init
+
+# Start Raiken
+raiken start
 \`\`\`
 
 This will:
-- Install all required dependencies
-- Start the Arten web interface at \`http://localhost:3000\`
+- Install the Raiken CLI globally
+- Set up Playwright configuration and test directories  
+- Start the Raiken web interface at \`http://localhost:3460\`
 - Enable all testing and AI features
+- Create project-specific configuration files
 
-### Option 2: Future CLI Installation
+### Option 2: Standalone Web Application
 
-A CLI tool is planned for future releases:
-
-\`\`\`bash
-# Coming soon - global CLI installation
-npm install -g @arten/cli
-
-# Add to package.json scripts
-echo '"arten": "arten start"' >> package.json
-
-# Start Arten
-npm run arten
-\`\`\`
-
-### Option 3: Standalone Development Setup
-
-For contributing to Arten or running the latest development version:
+For running Raiken as a standalone web application:
 
 \`\`\`bash
 # Clone the repository
-git clone https://github.com/your-username/arten.git
-cd arten
+git clone https://github.com/your-username/raiken.git
+cd raiken
 
 # Install dependencies
 npm install
 
 # Set up environment variables
-cp .env.example .env.local
-
-# Add your OpenRouter API key
-echo "OPENROUTER_API_KEY=your_api_key_here" >> .env.local
+echo "OPENROUTER_API_KEY=your_api_key_here" > .env.local
 
 # Start development server
 npm run dev
+\`\`\`
+
+### Option 3: NPX Usage
+
+You can also use npx to run Raiken without global installation:
+
+\`\`\`bash
+# Navigate to your project
+cd your-project
+
+# Run without installation
+npx @raiken/cli start
+
+# Or initialize first
+npx @raiken/cli init
+npx @raiken/cli start
 \`\`\`
 
 ## Environment Setup
 
 ### API Key Configuration
 
-Arten uses OpenRouter for AI-powered test generation. Get your API key:
+Raiken uses OpenRouter for AI-powered test generation. Get your API key:
 
 1. **Sign up** at [OpenRouter](https://openrouter.ai/)
 2. **Generate an API key** in your dashboard
@@ -87,7 +89,8 @@ Arten uses OpenRouter for AI-powered test generation. Get your API key:
 
 #### Global CLI Installation:
 \`\`\`bash
-arten config set apiKey your_api_key_here
+# Set API key in environment variable
+export OPENROUTER_API_KEY=your_api_key_here
 \`\`\`
 
 #### Local Installation:
@@ -98,17 +101,17 @@ OPENROUTER_API_KEY=your_api_key_here
 
 ### Project Configuration
 
-Arten automatically detects most project configurations, but you can customize settings:
+Raiken automatically detects most project configurations, but you can customize settings:
 
 \`\`\`bash
 # Generate config file
-arten init
+raiken init
 
-# Edit configuration
-arten config edit
+# Edit configuration file manually
+nano raiken.config.js
 \`\`\`
 
-This creates an \`arten.config.js\` file:
+This creates an \`raiken.config.js\` file:
 
 \`\`\`javascript
 module.exports = {
@@ -141,13 +144,13 @@ module.exports = {
 
 ### Next.js Projects
 
-Arten works seamlessly with Next.js applications:
+Raiken works seamlessly with Next.js applications:
 
 \`\`\`bash
 cd my-nextjs-app
-arten start
+raiken start
 
-# Arten will auto-detect:
+# Raiken will auto-detect:
 # - Next.js configuration
 # - Port (usually 3000)
 # - Test directory structure
@@ -159,10 +162,10 @@ For React applications:
 
 \`\`\`bash
 cd my-react-app
-arten start --port 3000
+raiken start --port 3000
 
 # Specify custom development server
-arten start --dev-server "npm run dev"
+raiken start --dev-server "npm run dev"
 \`\`\`
 
 ### Vue.js Projects
@@ -171,27 +174,27 @@ Vue.js support with auto-detection:
 
 \`\`\`bash
 cd my-vue-app
-arten start
+raiken start
 
 # For Nuxt.js
-arten start --framework nuxt
+raiken start --framework nuxt
 \`\`\`
 
 ### Other Frameworks
 
-Arten supports most web frameworks:
+Raiken supports most web frameworks:
 
 \`\`\`bash
 # Svelte/SvelteKit
 cd my-svelte-app
-arten start --framework svelte
+raiken start --framework svelte
 
 # Angular
 cd my-angular-app
-arten start --framework angular --port 4200
+raiken start --framework angular --port 4200
 
 # Custom setup
-arten start --framework custom --dev-server "npm run serve"
+raiken start --framework custom --dev-server "npm run serve"
 \`\`\`
 
 ## Verification
@@ -200,22 +203,22 @@ After installation, verify everything works:
 
 1. **Check CLI installation**:
    \`\`\`bash
-   arten --version
-   arten --help
+   raiken --version
+   raiken --help
    \`\`\`
 
 2. **Test project detection**:
    \`\`\`bash
    cd your-project
-   arten doctor
+   raiken info
    \`\`\`
 
-3. **Start Arten**:
+3. **Start Raiken**:
    \`\`\`bash
-   arten start
+   raiken start
    \`\`\`
 
-4. **Open the interface** at \`http://localhost:3000\`
+4. **Open the interface** at \`http://localhost:3460\`
 
 5. **Create your first test** using the AI test generator
 
@@ -236,7 +239,7 @@ nvm install node
 #### Port Conflicts
 \`\`\`bash
 # Use different port
-arten start --port 3001
+raiken start --port 3001
 
 # Kill process using default port
 lsof -ti:3000 | xargs kill -9
@@ -245,43 +248,40 @@ lsof -ti:3000 | xargs kill -9
 #### API Key Issues
 \`\`\`bash
 # Verify API key is set
-arten config get apiKey
+echo $OPENROUTER_API_KEY
 
-# Reset configuration
-arten config reset
+# Reset configuration by deleting config file
+rm raiken.config.js
 \`\`\`
 
 #### Windows Installation
 \`\`\`powershell
 # Use PowerShell as Administrator
-npm install -g @arten/cli --force
+npm install -g @raiken/cli --force
 
 # If you encounter issues, try:
 npm cache clean --force
-npm install -g @arten/cli
+npm install -g @raiken/cli
 \`\`\`
 
 ### Getting Help
 
 If you encounter issues:
 
-1. **Check the logs**:
+1. **Check the console output** when running raiken start
+
+2. **Check project info**:
    \`\`\`bash
-   arten logs
+   raiken info
    \`\`\`
 
-2. **Run diagnostics**:
-   \`\`\`bash
-   arten doctor
-   \`\`\`
+3. **Search existing issues**: [GitHub Issues](https://github.com/your-username/raiken/issues)
 
-3. **Search existing issues**: [GitHub Issues](https://github.com/your-username/arten/issues)
-
-4. **Join the community**: [GitHub Discussions](https://github.com/your-username/arten/discussions)
+4. **Join the community**: [GitHub Discussions](https://github.com/your-username/raiken/discussions)
 
 ## Next Steps
 
-Now that Arten is installed:
+Now that Raiken is installed:
 
 - **[Configuration Guide](/getting-started/configuration)** - Customize your setup
 - **[Quick Start](/getting-started/quick-start)** - Create your first test

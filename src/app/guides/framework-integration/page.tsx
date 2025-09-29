@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Puzzle, Code2, Zap, CheckCircle, ArrowRight, Settings, FileCode } from 'lucide-react'
 
-export default function FrameworkIntegrationGuide() {
+export default function TestManagementGuide() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <div className="mb-8">
@@ -12,9 +12,9 @@ export default function FrameworkIntegrationGuide() {
           <Puzzle className="h-6 w-6 text-purple-500" />
           <Badge variant="outline" className="text-sm">Integration</Badge>
         </div>
-        <h1 className="text-4xl font-bold mb-4">Framework Integration</h1>
+        <h1 className="text-4xl font-bold mb-4">Test Management</h1>
         <p className="text-xl text-muted-foreground mb-6">
-          Learn how to integrate Arten with different testing frameworks and adapt to your existing workflow.
+          Learn how to effectively organize, manage, and execute your test suites in Raiken's comprehensive test management system.
         </p>
       </div>
 
@@ -27,12 +27,12 @@ export default function FrameworkIntegrationGuide() {
               Framework-Agnostic Design
             </CardTitle>
             <CardDescription>
-              Arten's AI-powered test generation is designed to work with any testing framework
+              Raiken's AI-powered test generation is designed to work with any testing framework
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              While Arten currently generates Playwright tests out of the box, its architecture is designed to be framework-agnostic. 
+              While Raiken currently generates Playwright tests out of the box, its architecture is designed to be framework-agnostic. 
               The AI understands testing concepts and can adapt to different frameworks' syntax and patterns.
             </p>
             
@@ -120,7 +120,7 @@ export default function FrameworkIntegrationGuide() {
               Adapting to Other Frameworks
             </CardTitle>
             <CardDescription>
-              How Arten's AI can be adapted to work with different testing frameworks
+              How Raiken's AI can be adapted to work with different testing frameworks
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -313,14 +313,14 @@ export default function FrameworkIntegrationGuide() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              Ready to start using Arten with your current framework?
+              Ready to start using Raiken with your current framework?
             </p>
             <div className="grid gap-4 md:grid-cols-2">
               <Link href="/guides/cli-setup">
                 <Card className="hover:shadow-md transition-shadow cursor-pointer">
                   <CardContent className="p-4">
                     <h4 className="font-semibold mb-2">CLI Setup</h4>
-                    <p className="text-sm text-muted-foreground">Get started with Arten CLI installation</p>
+                    <p className="text-sm text-muted-foreground">Get started with Raiken CLI installation</p>
                   </CardContent>
                 </Card>
               </Link>

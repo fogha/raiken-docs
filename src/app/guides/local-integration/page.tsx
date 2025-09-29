@@ -13,7 +13,7 @@ export default function LocalIntegrationGuide() {
         </div>
         <h1 className="text-4xl font-bold mb-4">Local Integration</h1>
         <p className="text-xl text-muted-foreground mb-6">
-          Integrate Arten with your local development workflow using the bridge server for seamless file system access and test management.
+          Integrate Raiken with your local development workflow using the bridge server for seamless file system access and test management.
         </p>
       </div>
 
@@ -26,12 +26,12 @@ export default function LocalIntegrationGuide() {
               Bridge Server Architecture
             </CardTitle>
             <CardDescription>
-              How Arten connects your web interface with your local file system
+              How Raiken connects your web interface with your local file system
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <p className="text-muted-foreground">
-              Arten uses a local bridge server to connect the web interface with your project files. 
+              Raiken uses a local bridge server to connect the web interface with your project files. 
               This allows you to generate tests in the browser and save them directly to your project.
             </p>
             
@@ -77,11 +77,11 @@ export default function LocalIntegrationGuide() {
           <CardContent className="space-y-4">
             <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
               <p className="text-sm">
-                <strong>Before you start:</strong> Complete the <a href="/guides/cli-setup" className="text-blue-600 hover:underline">CLI Setup guide</a> to install and configure Arten.
+                <strong>Before you start:</strong> Complete the <a href="/guides/cli-setup" className="text-blue-600 hover:underline">CLI Setup guide</a> to install and configure Raiken.
               </p>
             </div>
             <p className="text-sm text-muted-foreground">
-              This guide assumes you have Arten CLI installed and your OpenRouter API key configured.
+              This guide assumes you have Raiken CLI installed and your OpenRouter API key configured.
             </p>
           </CardContent>
         </Card>
@@ -94,7 +94,7 @@ export default function LocalIntegrationGuide() {
               Development Workflow
             </CardTitle>
             <CardDescription>
-              How to integrate Arten into your daily development process
+              How to integrate Raiken into your daily development process
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -103,11 +103,11 @@ export default function LocalIntegrationGuide() {
                 <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">Typical Workflow</h4>
                 <ol className="list-decimal list-inside space-y-2 text-sm text-blue-700 dark:text-blue-300">
                   <li>Start your application development server</li>
-                  <li>Run <code>arten start</code> in your project directory</li>
+                  <li>Run <code>raiken start</code> in your project directory</li>
                   <li>Develop features in your preferred editor</li>
-                  <li>Generate tests using Arten's web interface</li>
+                  <li>Generate tests using Raiken's web interface</li>
                   <li>Tests are automatically saved to your project</li>
-                  <li>Run tests using <code>arten test</code> or your preferred test runner</li>
+                  <li>Run tests using <code>npx playwright test</code> or your preferred test runner</li>
                 </ol>
               </div>
 
@@ -167,14 +167,14 @@ export default function LocalIntegrationGuide() {
               File Management
             </CardTitle>
             <CardDescription>
-              How Arten manages test files in your project
+              How Raiken manages test files in your project
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-4">
               <h4 className="font-semibold">Default File Structure</h4>
               <p className="text-sm text-muted-foreground">
-                Arten creates and organizes test files based on your project structure:
+                Raiken creates and organizes test files based on your project structure:
               </p>
               <div className="bg-slate-900 rounded-lg p-4">
                 <code className="text-green-400 text-sm">
@@ -190,7 +190,7 @@ export default function LocalIntegrationGuide() {
                   │       └── user-journey.spec.ts<br />
                   ├── <span className="text-blue-400">generated-tests/</span><br />
                   │   └── <span className="text-gray-400"># AI-generated tests</span><br />
-                  └── <span className="text-blue-400">arten.config.js</span>
+                  └── <span className="text-blue-400">raiken.config.js</span>
                 </code>
               </div>
             </div>
@@ -305,12 +305,12 @@ export default function LocalIntegrationGuide() {
               <div className="space-y-4">
                 <h4 className="font-semibold">Hot Reload Integration</h4>
                 <p className="text-sm text-muted-foreground">
-                  Arten can detect when your application restarts and automatically reconnect.
+                  Raiken can detect when your application restarts and automatically reconnect.
                 </p>
                 <div className="bg-slate-900 rounded-lg p-3">
                   <code className="text-green-400 text-sm">
                     <span className="text-gray-400"># Auto-reconnect on app restart</span><br />
-                    arten start --watch
+                    raiken start --watch
                   </code>
                 </div>
               </div>
@@ -335,7 +335,7 @@ export default function LocalIntegrationGuide() {
                 </p>
                 <div className="bg-slate-900 rounded-lg p-3">
                   <code className="text-green-400 text-sm">
-                    arten switch /path/to/other/project
+                    cd /path/to/other/project && raiken start
                   </code>
                 </div>
               </div>
@@ -347,7 +347,7 @@ export default function LocalIntegrationGuide() {
                 </p>
                 <div className="bg-slate-900 rounded-lg p-3">
                   <code className="text-green-400 text-sm">
-                    arten test --headed --debug
+                    npx playwright test --headed --debug
                   </code>
                 </div>
               </div>
@@ -392,7 +392,7 @@ export default function LocalIntegrationGuide() {
                 <ul className="text-sm text-blue-700 dark:text-blue-300 mt-2 space-y-1">
                   <li>• Ensure your app is running on the expected port</li>
                   <li>• Check if the app URL is accessible from localhost</li>
-                  <li>• Manually specify the app port: <code>arten start --app-port 3000</code></li>
+                  <li>• Manually specify the app port: <code>raiken start --app-port 3000</code></li>
                 </ul>
               </div>
             </div>
@@ -406,7 +406,7 @@ export default function LocalIntegrationGuide() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              Ready to start using Arten with your local development workflow?
+              Ready to start using Raiken with your local development workflow?
             </p>
             <div className="grid gap-4 md:grid-cols-2">
               <Link href="/guides/cli-setup">

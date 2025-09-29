@@ -14,8 +14,8 @@ export default function ContributingPage() {
   const setupSteps = [
     {
       title: 'Fork the repository',
-      description: 'Create your own fork of the Arten repository on GitHub',
-      command: 'git clone https://github.com/your-username/arten.git'
+      description: 'Create your own fork of the Raiken repository on GitHub',
+      command: 'git clone https://github.com/your-username/raiken.git'
     },
     {
       title: 'Install dependencies',
@@ -44,7 +44,7 @@ export default function ContributingPage() {
     {
       icon: <Book className="h-6 w-6" />,
       title: 'Documentation',
-      description: 'Improve guides, API docs, and help others learn Arten',
+      description: 'Improve guides, API docs, and help others learn Raiken',
       examples: ['Tutorial improvements', 'API documentation', 'Code examples', 'Translation']
     },
     {
@@ -88,7 +88,7 @@ export default function ContributingPage() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-blue-500 to-purple-500 bg-clip-text text-transparent">
-            Contributing to Arten
+            Contributing to Raiken
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Help us build the future of AI-powered testing. Whether you're fixing bugs, 
@@ -108,7 +108,7 @@ export default function ContributingPage() {
               <Heart className="h-12 w-12 text-red-500 mx-auto mb-4" />
               <h2 className="text-2xl font-bold mb-4">Welcome Contributors!</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Arten is an open-source project built by the community, for the community. 
+                Raiken is an open-source project built by the community, for the community. 
                 We welcome contributions from developers of all skill levels and backgrounds.
               </p>
             </CardContent>
@@ -533,7 +533,7 @@ export default function ContributingPage() {
                   Ask questions, share ideas, and collaborate with other contributors.
                 </p>
                 <Button asChild className="w-full">
-                  <a href="https://github.com/your-username/arten/discussions" target="_blank" rel="noopener noreferrer">
+                  <a href="https://github.com/your-username/raiken/discussions" target="_blank" rel="noopener noreferrer">
                     Join Discussions <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
@@ -548,7 +548,7 @@ export default function ContributingPage() {
                   Real-time chat with the community and maintainers.
                 </p>
                 <Button asChild className="w-full">
-                  <a href="https://discord.gg/arten" target="_blank" rel="noopener noreferrer">
+                  <a href="https://discord.gg/raiken" target="_blank" rel="noopener noreferrer">
                     Join Discord <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
@@ -579,7 +579,7 @@ export default function ContributingPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild>
-                <a href="https://github.com/your-username/arten/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/your-username/raiken/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   Good First Issues
                 </a>

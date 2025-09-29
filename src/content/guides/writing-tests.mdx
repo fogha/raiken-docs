@@ -1,10 +1,10 @@
-# Writing Tests with Arten
+# Writing Tests with Raiken
 
-Learn how to create effective test cases using Arten's AI-powered test generation and advanced editor features.
+Learn how to create effective test cases using Raiken's AI-powered test generation and advanced editor features.
 
 ## Overview
 
-Arten provides multiple ways to create tests:
+Raiken provides multiple ways to create tests:
 
 1. **AI-Generated Tests** - Describe tests in natural language
 2. **Manual Test Writing** - Use the Monaco editor with TypeScript support
@@ -17,24 +17,25 @@ Arten provides multiple ways to create tests:
 Describe your test scenario in plain English:
 
 ```
-Test user login with valid credentials
+Test the product search functionality with filters
 ```
 
-Arten will generate a complete Playwright test:
+Raiken will generate a complete Playwright test:
 
 ```typescript
 import { test, expect } from '@playwright/test'
 
-test('user login with valid credentials', async ({ page }) => {
-  await page.goto('/login')
+test('product search with filters', async ({ page }) => {
+  await page.goto('/products')
   
-  await page.fill('[data-testid="email"]', 'user@example.com')
-  await page.fill('[data-testid="password"]', 'password123')
+  await page.fill('[data-testid="search-input"]', 'laptop')
+  await page.click('[data-testid="search-button"]')
   
-  await page.click('[data-testid="login-button"]')
+  await page.selectOption('[data-testid="category-filter"]', 'electronics')
+  await page.check('[data-testid="in-stock-filter"]')
   
-  await expect(page).toHaveURL('/dashboard')
-  await expect(page.locator('[data-testid="welcome-message"]')).toBeVisible()
+  await expect(page.locator('[data-testid="product-card"]')).toHaveCount({ min: 1 })
+  await expect(page.locator('[data-testid="results-count"]')).toContainText('results found')
 })
 ```
 
@@ -252,7 +253,7 @@ testCases.forEach(({ email, password, error }) => {
 
 ## Debugging Tests
 
-### Using Arten's Debug Features
+### Using Raiken's Debug Features
 
 1. **Video Recording** - Automatically captures test execution
 2. **Screenshots** - Taken on test failures
@@ -264,7 +265,7 @@ testCases.forEach(({ email, password, error }) => {
 Run tests in debug mode:
 
 ```bash
-arten test --debug
+npx playwright test --debug
 ```
 
 ### Adding Debug Information
@@ -277,6 +278,78 @@ test('complex user flow', async ({ page }) => {
   await page.screenshot({ path: 'debug-register-page.png' })
   
   // Continue with test...
+})
+```
+
+## Advanced Features
+
+### Page Object Model Support
+
+Raiken can generate tests using the Page Object Model pattern for better maintainability:
+
+```typescript
+// Generated Page Object
+class ProfilePage {
+  constructor(private page: Page) {}
+  
+  async updateProfile(name: string, email: string) {
+    await this.page.getByLabel('Full Name').fill(name);
+    await this.page.getByLabel('Email').fill(email);
+    await this.page.getByRole('button', { name: 'Save Changes' }).click();
+  }
+}
+
+// Generated Test
+test('user profile update', async ({ page }) => {
+  const profilePage = new ProfilePage(page);
+  await profilePage.updateProfile('John Doe', 'john@example.com');
+  await expect(page.getByText('Profile updated successfully')).toBeVisible();
+});
+```
+
+### Multi-Language Support
+
+Raiken handles internationalized applications with intelligent selector generation:
+
+```typescript
+// Supports multiple languages automatically
+await page.getByRole('button', { name: /login|connexion|iniciar sesión/i });
+```
+
+### Error Handling and Recovery
+
+Built-in resilience features:
+
+- **Automatic Retries**: Configurable retry mechanisms for flaky tests
+- **Graceful Degradation**: Continues operation even when some features fail
+- **Comprehensive Logging**: Detailed logs for debugging and analysis
+- **Recovery Strategies**: Intelligent error recovery and alternative approaches
+
+## Best Practices
+
+### Test Organization
+
+1. **Use descriptive test names** that explain what is being tested
+2. **Group related tests** using `test.describe()` blocks
+3. **Keep tests independent** - each test should be able to run in isolation
+4. **Use semantic selectors** - Prefer data-testid and ARIA attributes
+5. **Add meaningful assertions** to verify expected behavior
+
+### Writing Maintainable Tests
+
+```typescript
+// Good: Descriptive and focused
+test('should add item to cart and update counter', async ({ page }) => {
+  await page.goto('/products/laptop-123')
+  await page.getByTestId('add-to-cart-button').click()
+  
+  await expect(page.getByTestId('cart-counter')).toContainText('1')
+  await expect(page.getByTestId('success-message')).toContainText('Added to cart')
+})
+
+// Avoid: Vague and testing multiple things
+test('cart stuff', async ({ page }) => {
+  // Multiple unrelated assertions...
 })
 ```
 

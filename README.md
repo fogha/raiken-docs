@@ -1,6 +1,6 @@
-# Arten Documentation
+# Raiken Documentation
 
-This is the official documentation site for [Arten](https://github.com/your-username/arten) - an AI-powered test automation tool that combines AI with Playwright for automated testing.
+This is the official documentation site for [Raiken](https://github.com/your-username/raiken) - an AI-powered test automation tool that combines AI with Playwright for automated testing.
 
 ## 🚀 Getting Started
 
@@ -29,7 +29,7 @@ npm start
 ## 📁 Project Structure
 
 ```
-arten-docs/
+raiken-docs/
 ├── src/
 │   ├── app/                 # Next.js App Router pages
 │   ├── components/          # Reusable React components
@@ -64,7 +64,6 @@ Documentation content is organized in the `src/content/` directory:
 - `guides/` - Step-by-step tutorials and how-tos
 - `api/` - API reference documentation
 - `examples/` - Code examples and use cases
-- `changelog/` - Version history and updates
 
 ## 🤝 Contributing
 
@@ -78,4 +77,4 @@ For content contributions, simply edit the MDX files in `src/content/` and submi
 
 ## 📄 License
 
-This documentation is part of the Arten project and follows the same MIT license.
+This documentation is part of the Raiken project and follows the same MIT license.

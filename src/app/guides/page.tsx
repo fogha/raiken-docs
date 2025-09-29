@@ -9,8 +9,8 @@ import { useRef } from 'react'
 
 const guides = [
   {
-    title: 'Getting Started with CLI',
-    description: 'Install and set up the Arten CLI for your project.',
+    title: 'Test Editor Setup',
+    description: 'Learn to use Raiken\'s advanced Monaco-based test editor.',
     href: '/guides/cli-setup',
     icon: <Code2 className="h-6 w-6" />,
     level: 'Beginner',
@@ -21,7 +21,7 @@ const guides = [
   },
   {
     title: 'AI Test Generation',
-    description: 'Generate tests from natural language descriptions using AI.',
+    description: 'Generate comprehensive test suites using AI-powered analysis.',
     href: '/guides/ai-test-generation',
     icon: <Zap className="h-6 w-6" />,
     level: 'Intermediate',
@@ -31,8 +31,8 @@ const guides = [
     popular: true
   },
   {
-    title: 'Framework Integration',
-    description: 'Use Arten with different testing frameworks.',
+    title: 'Test Management',
+    description: 'Organize and manage your test suites effectively.',
     href: '/guides/framework-integration',
     icon: <TestTube className="h-6 w-6" />,
     level: 'Intermediate',
@@ -41,9 +41,9 @@ const guides = [
     gradient: 'from-green-500 to-emerald-400'
   },
   {
-    title: 'Project Configuration',
-    description: 'Configure Arten for your specific project type.',
-    href: '/guides/configuration',
+    title: 'Configuration',
+    description: 'Configure Raiken for your project and testing needs.',
+    href: '/getting-started/configuration',
     icon: <Settings className="h-6 w-6" />,
     level: 'Beginner',
     estimatedTime: '8 min read',
@@ -51,8 +51,8 @@ const guides = [
     gradient: 'from-orange-500 to-red-400'
   },
   {
-    title: 'Local Integration',
-    description: 'Connect Arten to your local development workflow.',
+    title: 'Test Reports',
+    description: 'Understand and analyze your test execution results.',
     href: '/guides/local-integration',
     icon: <GitBranch className="h-6 w-6" />,
     level: 'Advanced',
@@ -111,7 +111,7 @@ export default function GuidesPage() {
           </h1>
           
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Master Arten's powerful features with our step-by-step guides. From basic test writing to advanced AI-powered automation, 
+            Master Raiken's powerful features with our step-by-step guides. From using the test editor to AI-powered test generation, 
             we've got everything you need to become a testing expert.
           </p>
 
@@ -273,7 +273,7 @@ export default function GuidesPage() {
               </motion.div>
               
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                New to Arten?
+                New to Raiken?
               </h2>
               
               <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">

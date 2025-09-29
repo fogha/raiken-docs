@@ -4,11 +4,11 @@ import { mdxComponents } from '@/components/docs/mdx-components'
 const content = `
 # CI/CD Integration
 
-Integrate Arten-generated tests into your continuous integration and deployment pipelines for automated testing and quality assurance.
+Integrate Raiken-generated tests into your continuous integration and deployment pipelines for automated testing and quality assurance.
 
 ## Overview
 
-Arten generates standard Playwright tests that can be seamlessly integrated into any CI/CD pipeline. This guide covers setup for popular CI/CD platforms and best practices for automated testing.
+Raiken generates standard Playwright tests that can be seamlessly integrated into any CI/CD pipeline. This guide covers setup for popular CI/CD platforms and best practices for automated testing.
 
 ## GitHub Actions
 
@@ -17,7 +17,7 @@ Arten generates standard Playwright tests that can be seamlessly integrated into
 Create \`.github/workflows/test.yml\`:
 
 \`\`\`yaml
-name: Arten Tests
+name: Raiken Tests
 
 on:
   push:
@@ -44,7 +44,7 @@ jobs:
     - name: Install Playwright browsers
       run: npx playwright install --with-deps
     
-    - name: Run Arten-generated tests
+    - name: Run Raiken-generated tests
       run: npx playwright test
     
     - uses: actions/upload-artifact@v4
@@ -358,60 +358,6 @@ workflows:
       - test
 \`\`\`
 
-## Docker Integration
-
-### Dockerfile for Testing
-
-Create a Docker image for consistent testing:
-
-\`\`\`dockerfile
-FROM mcr.microsoft.com/playwright:v1.50.1-focal
-
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies
-RUN npm ci
-
-# Copy application code
-COPY . .
-
-# Set environment variables
-ENV CI=true
-ENV NODE_ENV=test
-
-# Run tests
-CMD ["npx", "playwright", "test"]
-\`\`\`
-
-### Docker Compose for Local CI
-
-Create \`docker-compose.test.yml\`:
-
-\`\`\`yaml
-version: '3.8'
-
-services:
-  test:
-    build: .
-    volumes:
-      - ./test-results:/app/test-results
-      - ./playwright-report:/app/playwright-report
-    environment:
-      - BASE_URL=http://app:3000
-    depends_on:
-      - app
-  
-  app:
-    build: .
-    command: npm start
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-\`\`\`
 
 ## Configuration Management
 
@@ -543,7 +489,7 @@ Set up Slack notifications for test results:
     channel: '#testing'
     webhook_url: \${{ secrets.SLACK_WEBHOOK }}
     message: |
-      🚨 Arten tests failed in \${{ github.repository }}
+      🚨 Raiken tests failed in \${{ github.repository }}
       Branch: \${{ github.ref }}
       Commit: \${{ github.sha }}
       View results: \${{ github.server_url }}/\${{ github.repository }}/actions/runs/\${{ github.run_id }}
@@ -640,7 +586,7 @@ With CI/CD integration complete:
 
 ---
 
-**Ready to scale?** Your Arten tests are now running automatically in your CI/CD pipeline, providing continuous quality assurance for your application.
+**Ready to scale?** Your Raiken tests are now running automatically in your CI/CD pipeline, providing continuous quality assurance for your application.
 `
 
 export default async function CICDPage() {

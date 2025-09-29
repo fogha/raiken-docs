@@ -7,22 +7,22 @@ import { Footer } from '@/components/layout/footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Arten Documentation - AI-Powered Test Automation',
-  description: 'Official documentation for Arten, an AI-powered test automation tool that combines artificial intelligence with Playwright for modern web application testing.',
-  keywords: ['arten', 'testing', 'automation', 'playwright', 'AI', 'documentation'],
-  authors: [{ name: 'Arten Team' }],
-  creator: 'Arten',
-  publisher: 'Arten',
+  title: 'Raiken Documentation - AI-Powered Test Automation',
+  description: 'Official documentation for Raiken, an AI-powered test automation platform with advanced test editor, visual test builder, and comprehensive test management.',
+  keywords: ['raiken', 'testing', 'automation', 'AI', 'test-editor', 'test-builder', 'documentation'],
+  authors: [{ name: 'Raiken Team' }],
+  creator: 'Raiken',
+  publisher: 'Raiken',
   openGraph: {
-    title: 'Arten Documentation',
-    description: 'AI-powered test automation tool documentation',
+    title: 'Raiken Documentation',
+    description: 'AI-powered test automation platform documentation',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Arten Documentation',
-    description: 'AI-powered test automation tool documentation',
+    title: 'Raiken Documentation',
+    description: 'AI-powered test automation platform documentation',
   },
 }
 

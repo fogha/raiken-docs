@@ -1,7 +1,7 @@
 {
-  "name": "arten-docs",
+  "name": "raiken-docs",
   "version": "1.0.0",
-  "description": "Official documentation for Arten - AI-Powered Test Automation Tool",
+  "description": "Official documentation for Raiken - AI-Powered Test Automation Tool",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,7 +11,7 @@
     "export": "next build && next export"
   },
   "keywords": [
-    "arten",
+    "raiken",
     "documentation",
     "testing",
     "playwright",

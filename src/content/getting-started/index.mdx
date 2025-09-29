@@ -1,16 +1,22 @@
-# Getting Started with Arten
+# Getting Started with Raiken
 
-Welcome to Arten, an AI-powered test automation tool that combines artificial intelligence with Playwright for modern web application testing. This guide will help you get up and running quickly.
+Welcome to Raiken, a modern, AI-powered web application testing tool that revolutionizes how developers create, manage, and execute automated tests. By combining the power of Playwright browser automation with advanced AI capabilities, Raiken provides an intuitive visual interface for generating comprehensive test suites from natural language descriptions.
 
-## What is Arten?
+## What is Raiken?
 
-Arten is a comprehensive testing solution that provides:
+Raiken is a comprehensive testing platform that bridges the gap between manual testing and automated test creation. It consists of two main components:
 
-- **🤖 AI-Powered Test Generation** - Convert natural language descriptions into Playwright tests
-- **🌐 Multi-Browser Support** - Test across Chromium, Firefox, and WebKit
-- **📝 Advanced Test Editor** - Monaco editor with TypeScript support
-- **🔄 Local Integration** - Direct file system access via CLI bridge
-- **📊 Rich Reporting** - Video recording, screenshots, and AI analysis
+1. **Web Application**: A Next.js-based interface for visual test creation and management
+2. **CLI Tool**: A command-line interface that integrates directly with your local development environment
+
+The platform enables developers to:
+- **🤖 AI-Powered Test Generation** - Convert natural language descriptions into robust Playwright tests
+- **🌐 Multi-Browser Support** - Comprehensive browser automation across Chromium, Firefox, and WebKit
+- **📝 Advanced Test Editor** - Professional-grade editing with Monaco editor and TypeScript support
+- **🔄 Local Integration** - Seamless integration with your development workflow via CLI bridge
+- **📊 Rich Reporting** - Comprehensive test execution reporting with videos, screenshots, and AI analysis
+- **🔔 Smart Notifications** - Non-intrusive notification system with real-time updates
+- **⚡ Real-time DOM Extraction** - Live page analysis with interactive element selection
 
 ## Prerequisites
 
@@ -29,20 +35,20 @@ Choose your preferred installation method:
 
 ```bash
 # Install globally
-npm install -g @arten/cli
+npm install -g @raiken/cli
 
 # Navigate to your project
 cd my-nextjs-app
 
-# Start Arten (auto-detects project type)
-arten start
+# Start Raiken (auto-detects project type)
+raiken start
 ```
 
 ### Option 2: Standalone Application
 
 ```bash
-git clone https://github.com/your-username/arten.git
-cd arten
+git clone https://github.com/your-username/raiken.git
+cd raiken
 npm install
 echo "OPENROUTER_API_KEY=your_api_key_here" > .env.local
 npm run dev
@@ -50,20 +56,71 @@ npm run dev
 
 ## Your First Test
 
-Once Arten is running, you can create your first test:
+Once Raiken is running, you can create your first test:
 
-1. **Open the web interface** at `http://localhost:3000`
+1. **Open the web interface** at `http://localhost:3460`
 2. **Describe your test** in natural language:
    ```
-   Test the login form with valid credentials
+   Test the shopping cart checkout process
    ```
 3. **Generate the test** using AI
 4. **Review and customize** the generated test
 5. **Run the test** across multiple browsers
 
+## Core Architecture
+
+Raiken follows an enterprise-grade architecture:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Raiken Architecture                       │
+├─────────────────────────────────────────────────────────────┤
+│  Web UI (Next.js)          │  CLI Bridge Server             │
+│  ├── Test Builder          │  ├── Project Detection         │
+│  ├── Browser Integration   │  ├── File System Access        │
+│  ├── Test Editor          │  └── Local Test Management     │
+│  └── Test Reports         │                                 │
+├─────────────────────────────────────────────────────────────┤
+│               AI Services (OpenRouter)                      │
+│               Playwright (Browser Automation)               │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Key Components
+
+#### 1. **Web Application Layer**
+- **Next.js Framework**: Modern React-based web application with App Router
+- **Component Architecture**: Modular UI components using Radix UI and Tailwind CSS
+- **State Management**: Zustand for efficient, type-safe state management
+- **Real-time Updates**: Live DOM extraction and browser status monitoring
+
+#### 2. **Service Layer**
+- **AI Service**: Abstraction layer for AI-powered test generation using OpenRouter
+- **Browser Service**: High-level browser automation operations
+- **Test Service**: Test lifecycle management (generation, execution, storage)
+- **API Service**: Centralized HTTP client with error handling and retry logic
+
+#### 3. **Core Engine**
+- **Playwright Service**: Browser automation engine supporting multiple browsers
+- **DOM Analyzer**: Intelligent DOM tree extraction and element selection
+- **Test Script Utils**: Utilities for test generation and execution
+
+#### 4. **CLI Integration**
+- **Project Detection**: Automatic framework detection (Next.js, React, Vue, etc.)
+- **File System Bridge**: Direct integration with local project files
+- **Configuration Management**: Project-specific settings and preferences
+
+## CLI Tool Benefits
+
+- ✅ **Direct file system access** - writes tests to your project
+- ✅ **Auto-project detection** - supports Next.js, React, Vue, and more
+- ✅ **Zero configuration** - works out of the box
+- ✅ **Offline support** - no cloud dependencies for core features
+- ✅ **Bridge server integration** - seamless hosted platform connectivity
+
 ## Next Steps
 
-Now that you have Arten installed, explore these topics:
+Now that you have Raiken installed, explore these topics:
 
 - [Configuration](/getting-started/configuration) - Set up your environment
 - [Writing Tests](/guides/writing-tests) - Learn test creation best practices  
@@ -75,8 +132,8 @@ Now that you have Arten installed, explore these topics:
 If you encounter any issues:
 
 - Check the [troubleshooting guide](/getting-started/troubleshooting)
-- Search [GitHub Issues](https://github.com/your-username/arten/issues)
-- Join our [community discussions](https://github.com/your-username/arten/discussions)
+- Search [GitHub Issues](https://github.com/your-username/raiken/issues)
+- Join our [community discussions](https://github.com/your-username/raiken/discussions)
 
 ---
 

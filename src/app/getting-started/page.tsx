@@ -19,8 +19,8 @@ export default function GettingStartedPage() {
   const quickStartSteps = [
     {
       title: 'Install the CLI',
-      command: 'npm install -g @arten/cli',
-      description: 'Install Arten CLI globally to access it from any project'
+      command: 'npm install -g @raiken/cli',
+      description: 'Install Raiken CLI globally to access it from any project'
     },
     {
       title: 'Navigate to your project',
@@ -28,15 +28,12 @@ export default function GettingStartedPage() {
       description: 'Move to your project directory'
     },
     {
-      title: 'Start Arten',
-      command: 'arten start',
-      description: 'Launches the web interface and bridge server'
+      title: 'Start Raiken',
+      command: 'raiken start',
+      description: 'Launches the web interface (auto-detects project type)'
     }
   ]
 
-  const supportedFrameworks = [
-    'Next.js', 'React', 'Vue.js', 'Svelte', 'Angular', 'Nuxt', 'Vite', 'Express.js'
-  ]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
@@ -52,7 +49,7 @@ export default function GettingStartedPage() {
             Getting Started
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Start building AI-powered tests in minutes. Follow our quick start guide to set up Arten 
+            Start building AI-powered tests in minutes. Follow our quick start guide to set up Raiken 
             in your project and generate your first test.
           </p>
         </motion.div>
@@ -111,10 +108,10 @@ export default function GettingStartedPage() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold">Install globally (Recommended)</h3>
                     <div className="bg-slate-900 rounded-lg p-4">
-                      <code className="text-green-400">npm install -g @arten/cli</code>
+                      <code className="text-green-400">npm install -g @raiken/cli</code>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      This installs Arten globally, allowing you to use it from any project directory.
+                      This installs Raiken globally, allowing you to use it from any project directory.
                     </p>
                   </div>
                 </CardContent>
@@ -127,10 +124,10 @@ export default function GettingStartedPage() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold">Use without installation</h3>
                     <div className="bg-slate-900 rounded-lg p-4">
-                      <code className="text-green-400">npx @arten/cli@latest start</code>
+                      <code className="text-green-400">npx @raiken/cli@latest start</code>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      Run Arten directly without installing globally. Always uses the latest version.
+                      Run Raiken directly without installing globally. Always uses the latest version.
                     </p>
                   </div>
                 </CardContent>
@@ -175,7 +172,7 @@ export default function GettingStartedPage() {
               <h3 className="font-semibold text-green-900 dark:text-green-100">What happens next?</h3>
             </div>
             <ul className="text-sm text-green-800 dark:text-green-200 space-y-1">
-              <li>• Arten auto-detects your project type (Next.js, React, Vue, etc.)</li>
+              <li>• Raiken auto-detects your project type (Next.js, React, Vue, etc.)</li>
               <li>• Opens your browser to http://localhost:3456</li>
               <li>• Starts the bridge server for local file system access</li>
               <li>• Ready to generate and run tests!</li>
@@ -183,31 +180,6 @@ export default function GettingStartedPage() {
           </div>
         </motion.section>
 
-        {/* Supported Frameworks */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-16"
-        >
-          <Card>
-            <CardHeader className="text-center">
-              <CardTitle>Supported Frameworks</CardTitle>
-              <CardDescription>
-                Arten automatically detects and configures for these project types
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap justify-center gap-3">
-                {supportedFrameworks.map((framework) => (
-                  <Badge key={framework} variant="secondary" className="px-3 py-1">
-                    {framework}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.section>
 
         {/* Key Features */}
         <motion.section
@@ -265,11 +237,11 @@ export default function GettingStartedPage() {
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold mb-3">Configure Your Project</h3>
                 <p className="text-muted-foreground mb-4">
-                  Set up your OpenRouter API key and customize Arten for your specific project needs.
+                  Set up your OpenRouter API key and customize Raiken for your specific project needs.
                 </p>
                 <Button asChild className="w-full">
                   <Link href="/getting-started/configuration">
-                    Configure Arten <ArrowRight className="ml-2 h-4 w-4" />
+                    Configure Raiken <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </CardContent>

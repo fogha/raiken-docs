@@ -208,7 +208,7 @@ export default function HomePage() {
               </span>
             </motion.div>
             <h2 className="mb-6 text-4xl md:text-5xl font-bold text-foreground">
-              Why Choose <span className="bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">Arten</span>?
+              Why Choose <span className="bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">Raiken</span>?
             </h2>
             <p className="mx-auto max-w-3xl text-xl text-muted-foreground leading-relaxed">
               Powerful features designed to make test automation accessible, efficient, and reliable
@@ -221,42 +221,42 @@ export default function HomePage() {
             <EnhancedFeatureCard
               icon={<Sparkles className="h-8 w-8" />}
               title="AI Test Generation"
-              description="Convert JSON test specifications into complete test suites using advanced AI models with 30+ supported providers."
+              description="Generate comprehensive test suites using AI-powered analysis. Create tests from natural language descriptions or JSON specifications."
               gradient="from-yellow-500/20 to-orange-500/20"
               delay={0}
             />
             <EnhancedFeatureCard
               icon={<Zap className="h-8 w-8" />}
-              title="Local CLI Integration"
-              description="Seamlessly integrate with your development workflow using the Arten CLI for project detection and test management."
+              title="Advanced Test Editor"
+              description="Monaco-powered TypeScript editor with syntax highlighting, auto-completion, and real-time error detection for professional test development."
               gradient="from-blue-500/20 to-cyan-500/20"
               delay={0.1}
             />
             <EnhancedFeatureCard
               icon={<Code2 className="h-8 w-8" />}
-              title="Multi-Browser Testing"
-              description="Test across Chromium, Firefox, and WebKit with Playwright integration, screenshots, video recording, and traces."
+              title="Test Management"
+              description="Comprehensive test suite management with organized test files, execution history, and detailed reporting capabilities."
               gradient="from-purple-500/20 to-pink-500/20"
               delay={0.2}
             />
             <EnhancedFeatureCard
               icon={<GitBranch className="h-8 w-8" />}
-              title="Real-time DOM Analysis"
-              description="Visual DOM extraction and element selection with live preview, making test creation intuitive and accurate."
+              title="Visual Test Builder"
+              description="Intuitive drag-and-drop interface for creating tests visually, with real-time preview and element selection capabilities."
               gradient="from-green-500/20 to-emerald-500/20"
               delay={0.3}
             />
             <EnhancedFeatureCard
               icon={<BookOpen className="h-8 w-8" />}
-              title="Advanced Test Editor"
-              description="Monaco editor with TypeScript support, syntax highlighting, multi-tab editing, and automatic test saving."
+              title="Test Reports"
+              description="Detailed test execution reports with screenshots, performance metrics, and comprehensive failure analysis for debugging."
               gradient="from-indigo-500/20 to-blue-500/20"
               delay={0.4}
             />
             <EnhancedFeatureCard
               icon={<Shield className="h-8 w-8" />}
-              title="Comprehensive Reporting"
-              description="Detailed test results with screenshots, videos, traces, and AI-powered failure analysis for quick debugging."
+              title="Theme Support"
+              description="Built-in dark and light theme support with seamless switching, providing a comfortable development experience."
               gradient="from-red-500/20 to-rose-500/20"
               delay={0.5}
             />
@@ -301,20 +301,20 @@ export default function HomePage() {
                 <div className="space-y-8 text-left">
                   <QuickStartStep
                     number={1}
-                    title="Install the CLI"
-                    code="npm install -g @arten/cli"
+                    title="Access Raiken Platform"
+                    code="Visit http://84.46.245.248:3000"
                     delay={0}
                   />
                   <QuickStartStep
                     number={2}
-                    title="Navigate to your project"
-                    code="cd my-nextjs-app"
+                    title="Create Your First Test"
+                    code="Click 'Create First Test' in the editor"
                     delay={0.2}
                   />
                   <QuickStartStep
                     number={3}
-                    title="Start Arten"
-                    code="arten start"
+                    title="Generate and Run Tests"
+                    code="Use AI generation or visual builder"
                     delay={0.4}
                   />
                 </div>

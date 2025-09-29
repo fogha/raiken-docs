@@ -22,7 +22,6 @@ const navigation = {
   resources: [
     { name: 'Examples', href: '/examples' },
     { name: 'API Reference', href: '/api' },
-    { name: 'Changelog', href: '/changelog' },
     { name: 'Contributing', href: '/contributing' },
   ],
 }
@@ -110,7 +109,7 @@ export function Footer() {
                         <Sparkles className="h-5 w-5 text-primary" />
                       </motion.div>
                       <span className="text-lg font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-                        Arten
+                        Raiken
                       </span>
                     </div>
                   </div>
@@ -136,7 +135,7 @@ export function Footer() {
             >
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                 <Link
-                  href="https://github.com/fogha/arten"
+                  href="https://github.com/fogha/raiken"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-10 h-10 rounded-full bg-muted/50 hover:bg-primary/20 text-muted-foreground hover:text-primary transition-all border border-border/50 hover:border-primary/50"
@@ -148,7 +147,7 @@ export function Footer() {
               
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                 <Link
-                  href="https://github.com/fogha/arten/discussions"
+                  href="https://github.com/fogha/raiken/discussions"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-10 h-10 rounded-full bg-muted/50 hover:bg-blue-500/20 text-muted-foreground hover:text-blue-500 transition-all border border-border/50 hover:border-blue-500/50"
@@ -268,7 +267,7 @@ export function Footer() {
               className="text-sm text-muted-foreground flex items-center"
               whileHover={{ scale: 1.02 }}
             >
-              © {new Date().getFullYear()} Arten. Made with{' '}
+              © {new Date().getFullYear()} Raiken. Made with{' '}
               <motion.span
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
@@ -288,7 +287,7 @@ export function Footer() {
               </Link>
               <motion.div whileHover={{ scale: 1.05 }}>
                 <Link
-                  href="https://github.com/fogha/arten"
+                  href="https://github.com/fogha/raiken"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center hover:text-primary transition-colors group"

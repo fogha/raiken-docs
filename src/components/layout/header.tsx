@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { 
@@ -14,17 +15,25 @@ import {
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navigation = [
+  { name: 'Home', href: '/' },
   { name: 'Getting Started', href: '/getting-started' },
   { name: 'Guides', href: '/guides' },
   { name: 'API Reference', href: '/api' },
   { name: 'Examples', href: '/examples' },
   { name: 'Contributing', href: '/contributing' },
-  { name: 'Changelog', href: '/changelog' },
 ]
 
 export function Header() {
+  const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/'
+    }
+    return pathname === href || pathname.startsWith(href + '/')
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,7 +84,7 @@ export function Header() {
                       <Sparkles className="h-4 w-4 text-primary" />
                     </motion.div>
                     <span className="text-lg font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-                      Arten
+                      Raiken
                     </span>
                   </div>
                 </div>
@@ -101,11 +110,17 @@ export function Header() {
               >
                 <Link
                   href={item.href}
-                  className="relative px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground group"
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors group ${
+                    isActive(item.href)
+                      ? 'text-foreground' 
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
                 >
                   {item.name}
                   <motion.div
-                    className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-primary to-blue-500 group-hover:w-full transition-all duration-300"
+                    className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-blue-500 ${
+                      isActive(item.href) ? 'w-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-300' : 'w-0'
+                    }`}
                     whileHover={{ width: "100%" }}
                   />
                 </Link>
@@ -120,7 +135,7 @@ export function Header() {
               whileTap={{ scale: 0.95 }}
             >
               <Link 
-                href="https://github.com/fogha/arten" 
+                href="https://github.com/fogha/raiken" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden sm:inline-flex"
@@ -206,7 +221,11 @@ export function Header() {
                   >
                     <Link
                       href={item.href}
-                      className="block px-4 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-md transition-all"
+                      className={`block px-4 py-3 text-base font-medium rounded-md transition-all ${
+                        isActive(item.href)
+                          ? 'text-foreground bg-muted/50'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                      }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -221,7 +240,7 @@ export function Header() {
                   transition={{ duration: 0.3, delay: 0.2 }}
                 >
                   <Link
-                    href="https://github.com/fogha/arten"
+                    href="https://github.com/fogha/raiken"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center px-4 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-md transition-all"
