@@ -6,6 +6,8 @@ const content = `
 
 Get up and running with Raiken in under 5 minutes. This guide assumes you have Node.js 18+ installed.
 
+> **💡 Try Before You Install:** Want to see Raiken in action first? We have a [live demo environment](http://84.46.245.248:3000/tests/editor) available. Click the link to explore all features before setting up locally.
+
 ## Method 1: CLI Tool (Recommended)
 
 The fastest way to start using Raiken with your existing project:

@@ -48,10 +48,18 @@ export default function GettingStartedPage() {
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-blue-500 to-purple-500 bg-clip-text text-transparent">
             Getting Started
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
             Start building AI-powered tests in minutes. Follow our quick start guide to set up Raiken 
             in your project and generate your first test.
           </p>
+          <div className="flex justify-center">
+            <Button asChild variant="outline" className="mb-8">
+              <Link href="http://84.46.245.248:3000/tests/editor" target="_blank" rel="noopener noreferrer">
+                <Play className="mr-2 h-4 w-4" />
+                Try Live Demo
+              </Link>
+            </Button>
+          </div>
         </motion.div>
 
         {/* Prerequisites */}

@@ -133,6 +133,16 @@ export default function HomePage() {
                   </Button>
                 </Link>
               </motion.div>
+
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href="http://84.46.245.248:3000/tests/editor" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto group border-border/50 hover:border-green-500/50 px-8 py-6 text-lg">
+                    <Play className="mr-2 h-5 w-5 group-hover:text-green-500 transition-colors" />
+                    Try Live Demo
+                    <ChevronRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </motion.div>
               
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/guides">
