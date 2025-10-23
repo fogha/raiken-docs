@@ -88,11 +88,11 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl md:text-2xl text-center text-muted-foreground/90 max-w-3xl mx-auto mb-4"
+              className="text-xl md:text-2xl text-center text-muted-foreground/90 max-w-3xl mt-6 mx-auto mb-4"
             >
-              Transform JSON test specifications into comprehensive test suites with
-              <span className="text-primary font-medium"> AI-powered generation</span> and
-              <span className="text-blue-500 font-medium"> local development integration</span>
+              Transform JSON test specifications as well as natural language descriptions into comprehensive e2e tests using
+              <span className="text-primary font-medium"> Artificial Intelligence</span> and 
+              <span className="text-blue-500 font-medium"> integrated with your local development environment</span>
             </motion.p>
 
             <motion.p
@@ -153,18 +153,6 @@ export default function HomePage() {
                   </Button>
                 </Link>
               </motion.div>
-            </motion.div>
-
-            {/* Stats/Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto text-center"
-            >
-              <StatsCard icon={Terminal} value="10,000+" label="Tests Generated" />
-              <StatsCard icon={Zap} value="99.9%" label="Uptime" />
-              <StatsCard icon={Globe} value="50+" label="Countries" />
             </motion.div>
           </motion.div>
         </div>
@@ -227,20 +215,13 @@ export default function HomePage() {
           </motion.div>
 
           {/* Feature Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             <EnhancedFeatureCard
               icon={<Sparkles className="h-8 w-8" />}
               title="AI Test Generation"
               description="Generate comprehensive test suites using AI-powered analysis. Create tests from natural language descriptions or JSON specifications."
               gradient="from-yellow-500/20 to-orange-500/20"
               delay={0}
-            />
-            <EnhancedFeatureCard
-              icon={<Zap className="h-8 w-8" />}
-              title="Advanced Test Editor"
-              description="Monaco-powered TypeScript editor with syntax highlighting, auto-completion, and real-time error detection for professional test development."
-              gradient="from-blue-500/20 to-cyan-500/20"
-              delay={0.1}
             />
             <EnhancedFeatureCard
               icon={<Code2 className="h-8 w-8" />}
@@ -317,14 +298,14 @@ export default function HomePage() {
                   />
                   <QuickStartStep
                     number={2}
-                    title="Create Your First Test"
-                    code="Click 'Create First Test' in the editor"
+                    title="Install the Raiken CLI tool"
+                    code="npm install -g @raiken/cli"
                     delay={0.2}
                   />
                   <QuickStartStep
                     number={3}
                     title="Generate and Run Tests"
-                    code="Use AI generation or visual builder"
+                    code="Generate tests and save them in your code base"
                     delay={0.4}
                   />
                 </div>

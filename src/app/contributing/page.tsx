@@ -579,7 +579,7 @@ export default function ContributingPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild>
-                <a href="https://github.com/your-username/raiken/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/fogha/raiken/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   Good First Issues
                 </a>

@@ -1,30 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { Github, Twitter, ExternalLink, Sparkles, Heart, ArrowUp } from 'lucide-react'
+import { Github, Twitter, ExternalLink, Heart, ArrowUp } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-
-const navigation = {
-  documentation: [
-    { name: 'Getting Started', href: '/getting-started' },
-    { name: 'Installation', href: '/getting-started/installation' },
-    { name: 'Quick Start', href: '/getting-started/quick-start' },
-    { name: 'Configuration', href: '/getting-started/configuration' },
-  ],
-  guides: [
-    { name: 'Writing Tests', href: '/guides/writing-tests' },
-    { name: 'AI Test Generation', href: '/guides/ai-test-generation' },
-    { name: 'Browser Testing', href: '/guides/browser-testing' },
-    { name: 'CI/CD Integration', href: '/guides/cicd' },
-  ],
-  resources: [
-    { name: 'Examples', href: '/examples' },
-    { name: 'API Reference', href: '/api' },
-    { name: 'Contributing', href: '/contributing' },
-  ],
-}
+import { BrandLogo } from '@/components/ui/brand-logo'
+import { footerNavigation } from '@/lib/navigation'
 
 export function Footer() {
   const ref = useRef(null)
@@ -82,43 +64,13 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-5">
           {/* Enhanced Brand Section */}
           <motion.div className="lg:col-span-2" variants={itemVariants}>
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-              className="group"
+            <BrandLogo size="lg" showDocs={false} />
+            <motion.span 
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors ml-3"
+              variants={itemVariants}
             >
-              <Link href="/" className="flex items-center space-x-3">
-                <div className="relative">
-                  <motion.div 
-                    className="absolute -inset-1 rounded-lg bg-gradient-to-r from-primary/30 via-blue-500/30 to-purple-500/30 opacity-75 blur-sm group-hover:opacity-100 transition-opacity"
-                    animate={{
-                      background: [
-                        "linear-gradient(to right, rgb(var(--primary)/0.3), rgb(59 130 246/0.3), rgb(168 85 247/0.3))",
-                        "linear-gradient(to right, rgb(168 85 247/0.3), rgb(var(--primary)/0.3), rgb(59 130 246/0.3))",
-                        "linear-gradient(to right, rgb(59 130 246/0.3), rgb(168 85 247/0.3), rgb(var(--primary)/0.3))"
-                      ]
-                    }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                  />
-                  <div className="relative rounded-lg bg-card/80 backdrop-blur-sm px-4 py-2 border border-border/50 group-hover:border-primary/50 transition-colors">
-                    <div className="flex items-center space-x-2">
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      >
-                        <Sparkles className="h-5 w-5 text-primary" />
-                      </motion.div>
-                      <span className="text-lg font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-                        Raiken
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <span className="text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors">
-                  Documentation
-                </span>
-              </Link>
-            </motion.div>
+              Documentation
+            </motion.span>
             
             <motion.p 
               className="mt-6 max-w-md text-base text-muted-foreground leading-relaxed"
@@ -166,7 +118,7 @@ export function Footer() {
               Documentation
             </h3>
             <ul className="space-y-3">
-              {navigation.documentation.map((item, index) => (
+              {footerNavigation.documentation.map((item, index) => (
                 <motion.li 
                   key={item.name}
                   initial={{ opacity: 0, x: -10 }}
@@ -198,7 +150,7 @@ export function Footer() {
               Guides
             </h3>
             <ul className="space-y-3">
-              {navigation.guides.map((item, index) => (
+              {footerNavigation.guides.map((item, index) => (
                 <motion.li 
                   key={item.name}
                   initial={{ opacity: 0, x: -10 }}
@@ -230,7 +182,7 @@ export function Footer() {
               Resources
             </h3>
             <ul className="space-y-3">
-              {navigation.resources.map((item, index) => (
+              {footerNavigation.resources.map((item, index) => (
                 <motion.li 
                   key={item.name}
                   initial={{ opacity: 0, x: -10 }}

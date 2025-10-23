@@ -42,23 +42,17 @@ This will:
 - Enable all testing and AI features
 - Create project-specific configuration files
 
-### Option 2: Standalone Web Application
+### Option 2: Web Application Access
 
-For running Raiken as a standalone web application:
+Access Raiken directly through the hosted web application without any local setup:
 
 \`\`\`bash
-# Clone the repository
-git clone https://github.com/your-username/raiken.git
-cd raiken
+# No installation required - simply visit:
+# http://84.46.245.248:3000/tests/editor
 
-# Install dependencies
-npm install
-
-# Set up environment variables
-echo "OPENROUTER_API_KEY=your_api_key_here" > .env.local
-
-# Start development server
-npm run dev
+# Access the test editor interface directly
+# All testing and AI features available immediately
+# No configuration files or API keys needed
 \`\`\`
 
 ### Option 3: NPX Usage
@@ -140,63 +134,6 @@ module.exports = {
 }
 \`\`\`
 
-## Framework Integration
-
-### Next.js Projects
-
-Raiken works seamlessly with Next.js applications:
-
-\`\`\`bash
-cd my-nextjs-app
-raiken start
-
-# Raiken will auto-detect:
-# - Next.js configuration
-# - Port (usually 3000)
-# - Test directory structure
-\`\`\`
-
-### React Projects (Vite/CRA)
-
-For React applications:
-
-\`\`\`bash
-cd my-react-app
-raiken start --port 3000
-
-# Specify custom development server
-raiken start --dev-server "npm run dev"
-\`\`\`
-
-### Vue.js Projects
-
-Vue.js support with auto-detection:
-
-\`\`\`bash
-cd my-vue-app
-raiken start
-
-# For Nuxt.js
-raiken start --framework nuxt
-\`\`\`
-
-### Other Frameworks
-
-Raiken supports most web frameworks:
-
-\`\`\`bash
-# Svelte/SvelteKit
-cd my-svelte-app
-raiken start --framework svelte
-
-# Angular
-cd my-angular-app
-raiken start --framework angular --port 4200
-
-# Custom setup
-raiken start --framework custom --dev-server "npm run serve"
-\`\`\`
-
 ## Verification
 
 After installation, verify everything works:
@@ -275,9 +212,9 @@ If you encounter issues:
    raiken info
    \`\`\`
 
-3. **Search existing issues**: [GitHub Issues](https://github.com/your-username/raiken/issues)
+3. **Search existing issues**: [GitHub Issues](https://github.com/fogha/raiken/issues)
 
-4. **Join the community**: [GitHub Discussions](https://github.com/your-username/raiken/discussions)
+4. **Join the community**: [GitHub Discussions](https://github.com/fogha/raiken/discussions)
 
 ## Next Steps
 

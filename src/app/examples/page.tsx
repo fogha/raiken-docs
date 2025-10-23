@@ -337,7 +337,7 @@ export default function ExamplesPage() {
         <div className="absolute top-40 left-1/2 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="container relative mx-auto px-4 py-16 max-w-7xl">
+      <div className="relative px-4 py-16">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

@@ -8,7 +8,8 @@ Master Raiken's AI-powered test generation capabilities to create comprehensive 
 
 ## Overview
 
-Raiken's AI test generation transforms JSON specifications and natural language descriptions into complete test suites using advanced language models. This feature accelerates test creation while maintaining high quality and best practices.
+\n\n
+Raiken's AI test generation transforms JSON specifications as well as natural language descriptions into complete test suites using advanced language models. This feature accelerates test creation while maintaining high quality and best practices.
 
 ## How It Works
 

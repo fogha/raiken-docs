@@ -162,7 +162,7 @@ export default function APIReferencePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
-      <div className="container mx-auto px-4 py-16">
+      <div className="px-4 py-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

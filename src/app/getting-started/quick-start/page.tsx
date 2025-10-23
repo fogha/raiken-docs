@@ -20,7 +20,10 @@ npm install -g @raiken/cli
 # Navigate to your project
 cd my-nextjs-app
 
-# Start Raiken (auto-detects project type)
+# Initialize Raiken
+raiken init
+
+# Start Raiken
 raiken start
 \`\`\`
 
@@ -29,7 +32,7 @@ This will:
 - Set up necessary configuration files
 - Start the web interface at \`http://localhost:3460\`
 
-### Step 2: Set Up AI (Optional)
+### Step 2: Set Up AI
 For AI-powered test generation, add your OpenRouter API key to \`.env.local\`:
 
 \`\`\`bash
@@ -78,19 +81,6 @@ Visit \`http://localhost:3460\` to access Raiken.
 2. **Write Playwright Code** using the Monaco editor with TypeScript support
 3. **Use Real-time DOM** - Click elements on the page to get selectors
 4. **Execute Tests** - Run tests directly from the interface
-
-## Project Auto-Detection
-
-Raiken automatically configures itself based on your project:
-
-| Framework | Detection | Test Directory | Default Port |
-|-----------|-----------|----------------|--------------|
-| Next.js | \`next\` dependency | \`e2e/\` | 3000 |
-| React | \`react\` dependency | \`tests/\` | 3000 |
-| Vue | \`vue\` dependency | \`tests/\` | 3000 |
-| Svelte | \`svelte\` dependency | \`tests/\` | 5173 |
-| Angular | \`@angular/core\` | \`e2e/\` | 4200 |
-| Nuxt | \`nuxt\` dependency | \`test/\` | 3000 |
 
 ## Key Features Overview
 

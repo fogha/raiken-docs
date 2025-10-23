@@ -4,36 +4,22 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
+import { BrandLogo } from '@/components/ui/brand-logo'
+import { mainNavigation, quickLinks, isActiveLink } from '@/lib/navigation'
 import { 
   Menu, 
   X, 
   BookOpen, 
   Github,
   ExternalLink,
-  Sparkles,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Getting Started', href: '/getting-started' },
-  { name: 'Guides', href: '/guides' },
-  { name: 'API Reference', href: '/api' },
-  { name: 'Examples', href: '/examples' },
-  { name: 'Contributing', href: '/contributing' },
-]
 
 export function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
-  const isActive = (href: string) => {
-    if (href === '/') {
-      return pathname === '/'
-    }
-    return pathname === href || pathname.startsWith(href + '/')
-  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,51 +43,12 @@ export function Header() {
     >
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Enhanced Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Link href="/" className="flex items-center space-x-3 group">
-              <div className="relative">
-                <motion.div 
-                  className="absolute -inset-1 rounded-lg bg-gradient-to-r from-primary/30 via-blue-500/30 to-purple-500/30 opacity-75 blur-sm group-hover:opacity-100 transition-opacity"
-                  animate={{
-                    background: [
-                      "linear-gradient(to right, rgb(var(--primary)/0.3), rgb(59 130 246/0.3), rgb(168 85 247/0.3))",
-                      "linear-gradient(to right, rgb(168 85 247/0.3), rgb(var(--primary)/0.3), rgb(59 130 246/0.3))",
-                      "linear-gradient(to right, rgb(59 130 246/0.3), rgb(168 85 247/0.3), rgb(var(--primary)/0.3))"
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                />
-                <div className="relative rounded-lg bg-card/80 backdrop-blur-sm px-4 py-2 border border-border/50 group-hover:border-primary/50 transition-colors">
-                  <div className="flex items-center space-x-2">
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    >
-                      <Sparkles className="h-4 w-4 text-primary" />
-                    </motion.div>
-                    <span className="text-lg font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-                      Raiken
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <motion.span 
-                className="text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors"
-                initial={{ opacity: 0.7 }}
-                whileHover={{ opacity: 1 }}
-              >
-                Docs
-              </motion.span>
-            </Link>
-          </motion.div>
+          {/* Logo */}
+          <BrandLogo size="md" />
 
           {/* Enhanced Desktop Navigation */}
           <nav className="hidden md:flex md:items-center md:space-x-1">
-            {navigation.map((item, index) => (
+            {mainNavigation.map((item, index) => (
               <motion.div
                 key={item.name}
                 initial={{ opacity: 0, y: -20 }}
@@ -111,7 +58,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   className={`relative px-4 py-2 text-sm font-medium transition-colors group ${
-                    isActive(item.href)
+                    isActiveLink(item.href, pathname)
                       ? 'text-foreground' 
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
@@ -119,7 +66,7 @@ export function Header() {
                   {item.name}
                   <motion.div
                     className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-blue-500 ${
-                      isActive(item.href) ? 'w-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-300' : 'w-0'
+                      isActiveLink(item.href, pathname) ? 'w-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-300' : 'w-0'
                     }`}
                     whileHover={{ width: "100%" }}
                   />
@@ -130,39 +77,45 @@ export function Header() {
 
           {/* Enhanced Actions */}
           <div className="flex items-center space-x-3">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link 
-                href="https://github.com/fogha/raiken" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden sm:inline-flex"
+            {quickLinks.filter(link => link.name === 'GitHub').map((link) => (
+              <motion.div
+                key={link.name}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Button variant="ghost" size="sm" className="group">
-                  <Github className="h-4 w-4 group-hover:text-primary transition-colors" />
-                  <span className="sr-only">GitHub</span>
-                </Button>
-              </Link>
-            </motion.div>
+                <Link 
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  className="hidden sm:inline-flex"
+                >
+                  <Button variant="ghost" size="sm" className="group">
+                    {link.icon && <link.icon className="h-4 w-4 group-hover:text-primary transition-colors" />}
+                    <span className="sr-only">{link.name}</span>
+                  </Button>
+                </Link>
+              </motion.div>
+            ))}
             
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link href="/getting-started" className="hidden sm:inline-flex">
-                <Button size="sm" className="group bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-blue-600 border-0">
-                  Get Started
-                  <motion.div
-                    animate={{ x: [0, 2, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    <ExternalLink className="ml-2 h-3 w-3" />
-                  </motion.div>
-                </Button>
-              </Link>
-            </motion.div>
+            {quickLinks.filter(link => link.name === 'Get Started').map((link) => (
+              <motion.div
+                key={link.name}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link href={link.href} className="hidden sm:inline-flex">
+                  <Button size="sm" className="group bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-blue-600 border-0">
+                    {link.name}
+                    <motion.div
+                      animate={{ x: [0, 2, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <ExternalLink className="ml-2 h-3 w-3" />
+                    </motion.div>
+                  </Button>
+                </Link>
+              </motion.div>
+            ))}
 
             {/* Enhanced Mobile menu button */}
             <motion.div
@@ -212,7 +165,7 @@ export function Header() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
-                {navigation.map((item, index) => (
+                {mainNavigation.map((item, index) => (
                   <motion.div
                     key={item.name}
                     initial={{ opacity: 0, x: -20 }}
@@ -222,7 +175,7 @@ export function Header() {
                     <Link
                       href={item.href}
                       className={`block px-4 py-3 text-base font-medium rounded-md transition-all ${
-                        isActive(item.href)
+                        isActiveLink(item.href, pathname)
                           ? 'text-foreground bg-muted/50'
                           : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                       }`}
@@ -239,23 +192,23 @@ export function Header() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3, delay: 0.2 }}
                 >
-                  <Link
-                    href="https://github.com/fogha/raiken"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center px-4 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-md transition-all"
-                  >
-                    <Github className="mr-3 h-5 w-5" />
-                    GitHub
-                  </Link>
-                  <Link
-                    href="/getting-started"
-                    className="flex items-center px-4 py-3 text-base font-medium text-primary hover:bg-primary/10 rounded-md transition-all"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <BookOpen className="mr-3 h-5 w-5" />
-                    Get Started
-                  </Link>
+                  {quickLinks.filter(link => ['GitHub', 'Get Started'].includes(link.name)).map((link) => (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      target={link.external ? "_blank" : undefined}
+                      rel={link.external ? "noopener noreferrer" : undefined}
+                      className={`flex items-center px-4 py-3 text-base font-medium rounded-md transition-all ${
+                        link.name === 'Get Started' 
+                          ? 'text-primary hover:bg-primary/10' 
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.icon && <link.icon className="mr-3 h-5 w-5" />}
+                      {link.name}
+                    </Link>
+                  ))}
                 </motion.div>
               </motion.div>
             </motion.div>
